@@ -6,18 +6,44 @@ description: Software developers, designers, product owners or business analysts
 
 # Interest Restriction Return (IRR) end-to-end service guide
 
-Version 0.1 issued 4 March 2020
+Version 0.2 issued 24 May 2021
 ***
-
-This guide explains how you can integrate your software with our APIs to submit your Interest Restriction return. It shows how the APIs fit into various end-to-end user journeys. It is intended to help software developers, designers, product owners or business analysts understand how your software needs to interact with HMRC systems.
 
 ## Overview
 <!-- Section owner: IRR Programme -->
 
-Interest Restriction Return (IRR) API allows developers to build software which can: 
+This guide explains how you can use the Interest Restriction Return API with your software
 
-* appoint or revoke a reporting company (via our [Interest Restriction Return (IRR) API](https://developer.service.hmrc.gov.uk/api-documentation/docs/api/service/interest-restriction-return/))
-* file full and abbreviated Interest Restriction Returns using software (via our [Interest Restriction Return (IRR) API](https://developer.service.hmrc.gov.uk/api-documentation/docs/api/service/interest-restriction-return/))
+It is written for software developers, designers, analysts, managers and others involved with creating or integrating software that connects to this API.
+
+The API supports the following functions:
+
+* Revoke an existing Reporting Company from submitting Interest Restriction Returns
+* Appoint a new Reporting Company for submitting Interest Restriction Returns
+* Submit an Interest Restriction Return (full)
+* Submit an Interest Restriction Return (abbreviated)
+
+For more information about how to develop your own client applications, including example clients for this API, see [Tutorials](https://developer.service.hmrc.gov.uk/api-documentation/docs/tutorials).
+
+## Business rules and error messages
+
+You can open the business rules and error messages for each journey. They are formatted in CSV.
+
+### Business rules
+
+* [Revoke an existing Reporting Company from submitting Interest Restriction Returns business rules](downloads/business-rules/Full Return Business Rules.csv)
+* [Appoint a new Reporting Company for submitting Interest Restriction Returns business rules](downloads/business-rules/Abbreviated Return Business Rules.csv)
+* [Submit an Interest Restriction Return (full) business rules](downloads/business-rules/Appoint Business Rules.csv)
+* [Submit an Interest Restriction Return (abbreviated) business rules](downloads/business-rules/Revoke Business Rules.csv)
+
+### Error messages
+
+* [Revoke an existing Reporting Company from submitting Interest Restriction Returns error messages](downloads/error-messages/Full Return Errors.csv)
+* [Appoint a new Reporting Company for submitting Interest Restriction Returns error messages](downloads/error-messages/Abbreviated Return Errors.csv)
+* [Submit an Interest Restriction Return (full) error messages](downloads/error-messages/Appoint Reporting Company Errors.csv)
+* [Submit an Interest Restriction Return (abbreviated) error messages](downloads/error-messages/Revoke Reporting Company Errors.csv)
+
+## User restricted endpoints
 
 ## Related API documentation
 <!--- Section owner: IRR Programme --->
@@ -27,6 +53,16 @@ Interest Restriction Return (IRR) API allows developers to build software which 
 
 ## Changelog
 <!--- Section owner: IRR Programme --->
+
+### Version 0.2
+
+24 May 2021
+
+What changed:
+
+* Add overview
+* Add business rules CSVs
+* Add error messages CSVs
 
 ### Version 0.1
 
