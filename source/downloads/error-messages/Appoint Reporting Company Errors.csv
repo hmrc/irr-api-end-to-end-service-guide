@@ -1,0 +1,38 @@
+Business rule,Error Code,New error message ,Error Message
+n/a,notFound,"This endpoint does not exist, give a correct URL",Matching resource not found.
+n/a,downstreamError,An internal server error occured ,An internal server error occurred.
+n/a,badRequest,Invalid request ,Invalid request.
+n/a,invalidBodyType,JSON files only,Expecting text/json or application/json body.
+n/a,unauthorised,You need authorisation from HMRC to use the API.,The client and/or agent is not authorised.
+n/a,invalidAcceptHeader,Send correct accept header,The accept header is missing or invalid.
+n/a,unsupportedVersion,This version of the endpoint does not exist,The requested resource could not be found.
+4.5,accountingPeriod18MonthsMax,End date must be less than 18 months after the start date,The end date must be less than 18 months after the start date
+1.3,agentNameCharactersError,Agent name contains invalid characters,Agent name contains invalid characters.
+1.3,agentNameLengthError,Agent name must be between 1 and 160 characters,Agent name must be between 1-160 characters if supplied
+1.3,agentNameNotSuppliedError,Agent acts on behalf of company so agent name needed,Agent name must be supplied if agent is acting on behalf of company
+1.3,agentNameSuppliedError,No agent so agent name not needed,Agent name must not be supplied if agent is not acting on behalf of company
+6.1,authorisingCompaniesEmpty,Enter at least 1 authorising company,authorisingCompanies must have at least 1 authorising company
+3.2,cannotBeUkAndNonUk,Company must be UK or non UK,Identity of company submitting cannot contain data for UK and NonUK field
+"2.1,3.1,4.1,6.1",companyNameCharactersError,Company name contains invalid characters,Company name contains invalid characters.
+"2.1,3.1,4.1,6.2",companyNameLengthError,Company name must be 1 to 160 characters long,Company name is [LENGTH] characters long and should be between 1 and 160
+This error code is incorrect as they references two different things,countryCodeLengthError,Country code must be 2 letters,UTR is [LENGTH] characters long and should be 2
+3.4,countryCodeValueError,Country code must be a valid ISO 3166-1 alpha-2 country code ,Country code [COUNTRY CODE] is not a valid country code
+5.2,endDateAfterStartDate,End date of the group's period of account must be after start date of the group's period of account,End Date must be after start date
+3.1,identityOfAppointingCompanyIsNotSupplied,Appointing company must be supplied if it's not the same as the reporting company or agent,Identity of Appointing Company must be supplied if it is not the same as the reporting company or agent
+3.1,identityOfAppointingCompanyIsSupplied,Appointing company not needed as it is the same as the reporting company or agent,Identity of Appointing Company must not be supplied if it is the same as the reporting company or agent
+5.1,startDateCannotBeBeforeMinimum,Start date must be on or after 2016-10-01,Start date cannot be before 2016-10-01
+5.1,startDateCannotBeInFuture,Start date cannot be in the future,Start date cannot be in the future
+"2.2,3.2,4.2,6.2",uTRChecksumError,UTR check sum given is not correct,UTR Check Sum does not satisfy the check sum
+"2.2,3.2,4.2,6.3",uTRLengthError,UTR must be 10 numeric characters,UTR is [LENGTH] characters long and should be 10
+"2.1,4.1",ultimateParentCompanyIsSupplied,Ultimate parent company not needed as it is the same as the reporting company,Ultimate Parent Company must not be supplied if it is the same as the reporting company
+4.1,ultimateParentWrongDetailsSuppliedError,"Parent company must have either a CTUTR, a SAUTR or a country code",you have given the details for all three ultimate parents please give correct detail
+"4.1,4.2,4.3",wrongUltimateParentIsUKCompanyAndNonUK,"Parent company must have either a CTUTR, a SAUTR or a country code",you have given details for a UK and Non UK Company
+"4.1,4.2",wrongUltimateParentIsUkCompanyAndPartnership,"Parent company must have either a CTUTR, a SAUTR or a country code",you have given details for a UK Company and Partnership
+"4.1,4.4",wrongUltimateParentIsUkPartnershipAndNonUKCompany,"Parent company must have either a CTUTR, a SAUTR or a country code",you have given details for a UK Partnership and NonUK Company
+,,,
+,Declaration error messages (nothing there currently),,The declaration that the listed companies make up at least 50% of the eligible companies must be true
+,,,
+,,,
+,,,
+, ,,
+,  ,,

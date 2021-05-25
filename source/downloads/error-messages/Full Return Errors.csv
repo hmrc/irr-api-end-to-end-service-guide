@@ -1,0 +1,40 @@
+Business rule,Error Code,Error Message
+n/a,notFound,Matching resource not found.
+n/a,downstreamError,An internal server error occurred.
+n/a,badRequest,Invalid request.
+n/a,invalidBodyType,Expecting text/json or application/json body.
+n/a,unauthorised,The client and/or agent is not authorised.
+n/a,invalidAcceptHeader,The accept header is missing or invalid.
+n/a,unsupportedVersion,The requested resource could not be found.
+5.1,accountingPeriod18MonthsMax,The end date must be less than 18 months after the start date
+1.2,agentNameCharactersError,Agent name contains invalid characters.
+1.2,agentNameLengthError,Agent name must be between 1-160 characters if supplied
+1.2,agentNameNotSuppliedError,Agent name must be supplied if agent is acting on behalf of company
+1.2,agentNameSuppliedError,Agent name must not be supplied if agent is not acting on behalf of company
+6.1,authorisingCompaniesEmpty,authorisingCompanies must have at least 1 authorising company
+3.2,cannotBeUkAndNonUk,Identity of company submitting cannot contain data for UK and NonUK field
+3.1,companyMakingAppointmentMustSupplyDetails,companyMakingRevocation must be supplied when isReportingCompanyRevokingItself is false
+"2.1,3.1,4.1,6.1",companyNameCharactersError,Company name contains invalid characters.
+"2.1,3.1,4.1,6.1",companyNameLengthError,Company name is [LENGTH] characters long and should be between 1 and 160
+3.4,countryCodeLengthError,UTR is [LENGTH] characters long and should be 2
+3.4,countryCodeValueError,Country code [COUNTRY CODE] is not a valid country code
+7.1,declaredFiftyPercentOfEligibleCompanies,The declaration that the listed companies constitute at least 50% of the eligible companies must be true
+2.4,detailsNotNeededIfCompanyRevokingItself,"If the reporting company is submitting this revocation, the identity of company making revocation is not needed."
+5.2,endDateAfterStartDate,End Date must be after start date
+5.1,startDateCannotBeBeforeMinimum,Start date cannot be before 2016-10-01
+5.1,startDateCannotBeInFuture,Start date cannot be in the future
+"2.2,3.2,4.2,6.2",uTRChecksumError,UTR Check Sum does not satisfy the check sum
+"2.2,3.2,4.2,6.2",uTRLengthError,UTR is [LENGTH] characters long and should be 10
+4.1,ultimateParentCompanyIsSupplied,Ultimate Parent Company must not be supplied if it is the same as the reporting company
+4.1,ultimateParentCompanyIsSuppliedRevoke,Ultimate Parent Company must not be supplied if it is the same as the reporting company
+4.1,ultimateParentWrongDetailsSuppliedError,you have given the details for all three ultimate parents please give correct detail
+"4.2,4.3",wrongUltimateParentIsUKCompanyAndNonUK,you have given details for a UK and Non UK Company
+"4.2,4.4",wrongUltimateParentIsUkCompanyAndPartnership,you have given details for a UK Company and Partnership
+"4.2,4.5",wrongUltimateParentIsUkPartnershipAndNonUKCompany,you have given details for a UK Partnership and NonUK Company
+,,
+,Declaration (currently no error messages),
+,,
+,,
+,,
+,,
+, ,
