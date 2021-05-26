@@ -31,17 +31,17 @@ You can open the business rules and error messages for each journey. They are fo
 
 ### Business rules
 
-* [Revoke an existing Reporting Company from submitting Interest Restriction Returns business rules](downloads/business-rules/Full Return Business Rules.csv)
-* [Appoint a new Reporting Company for submitting Interest Restriction Returns business rules](downloads/business-rules/Abbreviated Return Business Rules.csv)
-* [Submit an Interest Restriction Return (full) business rules](downloads/business-rules/Appoint Business Rules.csv)
-* [Submit an Interest Restriction Return (abbreviated) business rules](downloads/business-rules/Revoke Business Rules.csv)
+* <a href="downloads/business-rules/Revoke Business Rules.csv" download>Revoke an existing Reporting Company from submitting Interest Restriction Returns business rules</a>
+* <a href="downloads/business-rules/Appoint Business Rules.csv" download>Appoint a new Reporting Company for submitting Interest Restriction Returns business rules</a>
+* <a href="downloads/business-rules/Full Return Business Rules.csv" download>Submit an Interest Restriction Return (full) business rules</a>
+* <a href="downloads/business-rules/Abbreviated Return Business Rules.csv" download>Submit an Interest Restriction Return (abbreviated) business rules</a>
 
 ### Error messages
 
-* [Revoke an existing Reporting Company from submitting Interest Restriction Returns error messages](downloads/error-messages/Full Return Errors.csv)
-* [Appoint a new Reporting Company for submitting Interest Restriction Returns error messages](downloads/error-messages/Abbreviated Return Errors.csv)
-* [Submit an Interest Restriction Return (full) error messages](downloads/error-messages/Appoint Reporting Company Errors.csv)
-* [Submit an Interest Restriction Return (abbreviated) error messages](downloads/error-messages/Revoke Reporting Company Errors.csv)
+* <a href="downloads/error-messages/Revoke Reporting Company Errors.csv" download>Revoke an existing Reporting Company from submitting Interest Restriction Returns error messages</a>
+* <a href="downloads/error-messages/Appoint Reporting Company Errors.csv" download>Appoint a new Reporting Company for submitting Interest Restriction Returns error messages</a>
+* <a href="downloads/error-messages/Full Return Errors.csv" download>Submit an Interest Restriction Return (full) error messages</a>
+* <a href="downloads/error-messages/Abbreviated Return Errors.csv" download>Submit an Interest Restriction Return (abbreviated) error messages</a>
 
 ## User restricted endpoints
 
