@@ -6,7 +6,7 @@ description: Software developers, designers, product owners or business analysts
 
 # Interest Restriction Return (IRR) end-to-end service guide
 
-Version 0.2 issued 24 May 2021
+Version 0.3 issued 28 May 2021
 ***
 
 ## Overview
@@ -45,6 +45,10 @@ You can open the business rules and error messages for each journey. They are fo
 
 ## User restricted endpoints
 
+This application uses user restricted endpoints. This means that we require specific authorisation from the user to grant authority to your application to interact with HMRC on their behalf, without sharing their access credentials.
+
+For in depth information about user restricted endpoints, together with examples on how to integrate with them, please visit HMRC’s developer hub guidance on [User Restricted Endpoints](https://developer.service.hmrc.gov.uk/api-documentation/docs/authorisation/user-restricted-endpoints)
+
 ## Related API documentation
 <!--- Section owner: IRR Programme --->
 
@@ -53,6 +57,14 @@ You can open the business rules and error messages for each journey. They are fo
 
 ## Changelog
 <!--- Section owner: IRR Programme --->
+
+### Version 0.3
+
+28 May 2021
+
+What changed:
+
+* Add content to user restricted endpoints section
 
 ### Version 0.2
 
