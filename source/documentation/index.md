@@ -6,11 +6,19 @@ description: Software developers, designers, product owners or business analysts
 
 # Interest Restriction Return (IRR) end-to-end service guide
 
-Version 0.3 issued 28 May 2021
+Version 0.4 issued 3 June 2021
 ***
 
 ## Overview
 <!-- Section owner: IRR Programme -->
+
+When calculating how much UK corporation tax a company or group has to pay, there's a limit to the amount of tax relief allowed for deducting net interest and other financing costs.
+
+On 1st April 2017, new Corporate Interest Restriction Return (IRR) legislation came into effect. New rules were introduced to limit tax deduction for interest expense and other similar financing costs.
+
+If a group has more than £2 million in net interest and meets the requirements outlined in the legislation, they are required to appoint a reporting group within six months of the account period end.
+
+The nominated reporting company group must then submit a group level interest restriction return on behalf of the company or group. The return is then checked by HMRC to ensure it meets the legislation.
 
 This guide explains how you can use the Interest Restriction Return API with your software
 
@@ -27,21 +35,21 @@ For more information about how to develop your own client applications, includin
 
 ## Business rules and error messages
 
-You can open the business rules and error messages for each journey. They are formatted in CSV.
+You can open the business rules and error messages for each journey. They are formatted in CSV or Microsoft Excel (xlsx).
 
 ### Business rules
 
-* <a href="downloads/business-rules/Revoke Business Rules.csv" download>Revoke an existing Reporting Company from submitting Interest Restriction Returns business rules</a>
-* <a href="downloads/business-rules/Appoint Business Rules.csv" download>Appoint a new Reporting Company for submitting Interest Restriction Returns business rules</a>
-* <a href="downloads/business-rules/Full Return Business Rules.csv" download>Submit an Interest Restriction Return (full) business rules</a>
-* <a href="downloads/business-rules/Abbreviated Return Business Rules.csv" download>Submit an Interest Restriction Return (abbreviated) business rules</a>
+* Revoke an existing Reporting Company from submitting Interest Restriction Returns business rules [<a href="downloads/business-rules/Revoke Business Rules.csv" download>csv</a> | <a href="downloads/business-rules/Revoke Business Rules.xlsx" download>xlsx</a>]
+* Appoint a new Reporting Company for submitting Interest Restriction Returns business rules [<a href="downloads/business-rules/Appoint Business Rules.csv" download>csv</a> | <a href="downloads/business-rules/Appoint Business Rules.xlsx" download>xlsx</a>]
+* Submit an Interest Restriction Return (full) business rules [<a href="downloads/business-rules/Full Return Business Rules.csv" download>csv</a> | <a href="downloads/business-rules/Full Return Business Rules.xlsx" download>xlsx</a>]
+* Submit an Interest Restriction Return (abbreviated) business rules [<a href="downloads/business-rules/Abbreviated Return Business Rules.csv" download>csv</a> | <a href="downloads/business-rules/Abbreviated Return Business Rules.xlsx" download>xlsx</a>]
 
 ### Error messages
 
-* <a href="downloads/error-messages/Revoke Reporting Company Errors.csv" download>Revoke an existing Reporting Company from submitting Interest Restriction Returns error messages</a>
-* <a href="downloads/error-messages/Appoint Reporting Company Errors.csv" download>Appoint a new Reporting Company for submitting Interest Restriction Returns error messages</a>
-* <a href="downloads/error-messages/Full Return Errors.csv" download>Submit an Interest Restriction Return (full) error messages</a>
-* <a href="downloads/error-messages/Abbreviated Return Errors.csv" download>Submit an Interest Restriction Return (abbreviated) error messages</a>
+* Revoke an existing Reporting Company from submitting Interest Restriction Returns error messages [<a href="downloads/error-messages/Revoke Errors.csv" download>csv</a> | <a href="downloads/error-messages/Revoke Errors.xlsx" download>xlsx</a>]
+* Appoint a new Reporting Company for submitting Interest Restriction Returns error messages [<a href="downloads/error-messages/Appoint Errors.csv" download>csv</a> | <a href="downloads/error-messages/Appoint Errors.xlsx" download>xlsx</a>] 
+* Submit an Interest Restriction Return (full) error messages [<a href="downloads/error-messages/Full Return Errors.csv" download>csv</a> | <a href="downloads/error-messages/Full Return Errors.xlsx" download>xlsx</a>]
+* Submit an Interest Restriction Return (abbreviated) error messages [<a href="downloads/error-messages/Abbreviated Return Errors.csv" download>csv</a> | <a href="downloads/error-messages/Abbreviated Return Errors.xlsx" download>xlsx</a>]
 
 ## User restricted endpoints
 
@@ -57,6 +65,16 @@ For in depth information about user restricted endpoints, together with examples
 
 ## Changelog
 <!--- Section owner: IRR Programme --->
+
+### Version 0.4
+
+3 June 2021
+
+What changed:
+
+* Add more information to overview
+* Add XLSX download option
+* Update content of error messages and business rules
 
 ### Version 0.3
 
