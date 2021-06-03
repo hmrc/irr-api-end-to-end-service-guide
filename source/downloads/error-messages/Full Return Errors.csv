@@ -1,132 +1,102 @@
-Business rule,Error code,Current error message,New error message,Liz's notes (Queries/explanations),,Notes for Mike ,
-n/a,notFound,Matching resource not found.,"This endpoint does not exist, give a correct URL ",,,,
-n/a,downstreamError,An internal server error occurred.,An internal server error occured ,,Error in EIS - we don't have more info bug - we're working to resolve it,,
-n/a,badRequest,Invalid request.,Invalid request ,,What we're receiving doesn't match what we're expecting and we can/'t give them more information as we don't know,,
-n/a,invalidBodyType,Expecting text/json or application/json body.,JSON files only,This API only accepts JSON files,"body =payload  
-We only accept JSON ie not csv etc - ie they've sent the wrong file type",,
-n/a,unauthorised,The client and/or agent is not authorised.,You need authorisation from HMRC to use the API. ,,You need to authorise with HMRC to use the API and you need a valid token to do that. [dev hub process],,
-n/a,invalidAcceptHeader,The accept header is missing or invalid.,Send correct accept header,Simpler language for accept header?,They haven't sent a header telling us what they accept ,,
-n/a,unsupportedVersion,The requested resource could not be found.,This version of the endpoint does not exist,,They've asked for a version of the endpoint that does not exist,,
-4.5,accountingPeriod18MonthsMax,The end date must be less than 18 months after the start date,End date must be less than 18 months after the start date,,The end date must be less than 18 month after the start date,,
-5.8,adjustedNetGroupInterestNotSupplied,Adjusted Group Interest is required when Group Ratio is elected,Group ratio elected so adjusted group interest required,ANGIE,You elected group ratio so you must fill in adjusted group interest,,
-,adjustedNetGroupInterestSupplied,Adjusted Group Interest should not be supplied as Group Ratio is not elected,Group ratio not elected so adjusted group interest should not be provided,ANGIE is required irrespective of whether you've elected the group ratio - but Angie always needed so is this needed at all,You do not need to fill in adjusted group ratio as you did not elect group ratio ,"I think it should be: ""Group ratio not elected so adjusted group interest should not be provided""","The ""adjusted group interest"" object contains the QNGIE, group ebitda, group ratio. So this is fulfilling the business rule that says if you dont elect a group ratio, you dont enter these amounts"
-1.3,agentNameCharactersError,Agent name contains invalid characters.,Agent name contains invalid characters,Must conform to regex - is it enough to have it in the schema,,,
-1.3,agentNameLengthError,Agent name must be between 1-160 characters if supplied,Agent name must be between 1 and 160 characters,,,,
-1.3,agentNameNotSuppliedError,Agent name must be supplied if agent is acting on behalf of company,Agent acts on behalf of company so agent name needed,Agent name is missing and needs to be supplied - devs to help,,,
-1.3,agentNameSuppliedError,Agent name must not be supplied if agent is not acting on behalf of company,No agent so agent name not needed,Is this needed? It could be possible in the api unless the validation doesn't cover,,,
-6.7,aggInterestPositiveAndRestriction,The group cannot be subject to restrictions and have an aggregate net-tax interest income,The group cannot be subject to restrictions and have an aggregate net-tax interest income,Devs how the value actually appears - need to clarify what the total net tax interest is (total tax interest = the net tax interest income),You cannot have an total tax interest if the full return is subject to restriction,,
-6.15,allocatedReactivationsCannotBeNegative,currentPeriodReactivation cannot be negative,Current period reactivation must be a positive number,,,,
-6.15,allocatedReactivationsDecimalError,currentPeriodReactivation is only allowed to be two decimal place,Current period reactivation must be to 2 decimal places or less,,,,
-6.15,allocatedRestrictionDateBeforePrevious,ap[INDEX]End cannot be equal to or before ap[INDEX - 1]EndDate,End date of this accounting period cannot be equal to or before the end date of the preceding accounting period,"Validating the various end dates you're entering. Looking at each of those entered
- - relates to companies with restrictions and accounting periods that don't match the WWG's period of account. There can be up to 3 ap. This will only apply to either ap 2 or 3. Index -1 is looking at the previous accounting periods",,,
-6.15,allocatedRestrictionDecimalError,disallowanceAp[INDEX] has greater than the allowed 2 decimal places.,Amount of disallowance for this accounting period must be to 2 decimal places or less,"INDEX will always be an accounting period
-This doesn't make sense - dates dont have decimal places",,,
-"6.10, 6.11, 6.12",allocatedRestrictionLaterPeriodSupplied,ap[INDEX]End cannot be supplied as a previous period is missing,Accounting period [INDEX] end date cannot be given as previous accounting period is missing,You're trying to add accounting period 2/3 but accounting period 1/2 has not been populated,,,
-"6.10, 6.11, 6.12",allocatedRestrictionNegative,disallowanceAp[INDEX] cannot be negative,Disallowance for the accounting period [index] must be a positive number,,,,
-"6.10, 6.11, 6.12",allocatedRestrictionNotSupplied,disallowanceAp[INDEX] must have a value when ap[INDEX]End is supplied,There is an accounting period [INDEX] end date so there must be a disallowance for that period ,If you've entered an end date you need to add a restriction [disallowance ap[index],,,
-"6.10, 6.11, 6.12",allocatedRestrictionSupplied,disallowanceAp[INDEX] cannot have a value when no ap[INDEX]End is supplied,No accounting period [INDEX] end date so no disallowance needed for that period,If you haven't entered an end date you cannot enter a restriction,,,
-"6.10, 6.11, 6.12",allocatedRestrictionTotalDecimalError,totalDisallowances has greater than the allowed 2 decimal places.,Total disallowances must be to 2 decimal places or less,,,,
-6.13,allocatedRestrictionTotalDoesNotMatch,The totalDisallowances was [CALCULATED AMOUNT] which does not match the supplied amount of [TOTAL DISALLOWANCES],The calculated total disallowances and the total disallowances must be the same ,"Guessing here: or the sum of disallowance AP1, disallowance AP2 and disallowance AP3 must be the same as the Total disallowance.
-Mike to give me names of fields",,,
-6.13,allocatedRestrictionTotalNegative,totalDisallowances cannot be negative,Total disallowances must be a positive number,,,,
-6.13,allocatedRestrictionTotalNotSupplied,totalDisallowances must be supplied if restrictions are supplied,There is a restriction so total disallowances needed,User entered amount,,,
-5.8,angieDecimalError,ANGIE has greater than the allowed 2 decimal places.,ANGIE must be to 2 decimal places or less,,,,
-"6.10, 6.11, 6.12",ap1NotAfterGroupStartDate,ap1EndDate ([AP1 END DATE]) must be after the group accounting period start date ([GROUP START DATE]),There is a restriction so end date of the first accounting period must be after the start date of the group's period of account,"When you have a restriction for a com that you're adding and that co's accounting period is different from the WWG's period of account. 
-
-How to refer to AP1EndDate as a plain english term",,,
-"6.10, 6.11, 6.12",ap3BeforeGroupEndDate,ap3EndDate ([AP3 END DATE]) is before the group accounting period end date ([GROUP END DATE]),"Where there is a restriction, the third accounting period's end date must be after the end date of the group's period of account",Restrictions accounting period end date can't be before the group's end date - so the third and final accounting period can't end before the end of the WWG's period of account,,,
-4.1,companiesContainedAllocatedReactivations,Allocated Reactivations cannot be supplied for this UK Company when the group is not subject to Interest Reactivation,Group does not have an interest reactivation so no allocated reactivations needed for this company,You can only have a reactivation if you have a restriction,,,
-4.9,companiesContainedAllocatedRestrictions,Allocated Restrictions cannot be supplied for this UK Company when the group is not subject to Interest Restriction,Group does not have an interest restriction so no allocated restrictions needed for this company,,,,
-"2.1,3.2,3.7,6.1",companyNameCharactersError,Company name contains invalid characters.,Company name contains invalid characters,What's the validation?,,,
-"2.1,3.2,3.7,6.2",companyNameLengthError,Company name is [LENGTH] characters long and should be between 1 and 160,Company name must be 1 to 160 characters long,,,,
-5.14,consolidatedPartnershipsEmpty,consolidatedPartnership must have at least 1 partnership,Add at least 1 consolidated partnership,?,,,
-5.14,consolidatedPartnershipsNotSupplied,"Consolidated Partnership is elected, must supply partnership name",Consolidated partnership elected so name of a partnership needed,,,,
-5.14,consolidatedPartnershipsSupplied,"Consolidated Partnership is not elected, unable to supply partnership name",Consolidated partnership not elected so name of partnership not needed,Where you have not elected a cp. So you either haven't answer the question or you've answered no to a consolidated partnership question.,,,
-3.18,countryCodeLengthError,UTR is [LENGTH] characters long and should be 2,Country code must be 2 letters,Orig error message is wrong ,,,
-3.18,countryCodeValueError,Country code [COUNTRY CODE] is not a valid country code,Country code must be a valid ISO 3166-1 alpha-2 country code ,"What's the validation for the country code?
-Not sure if this field is valid",,,
-"3.3, 3.5, 3.8",deemedParentWrongDetailsSuppliedError,you have given the details for all three ultimate parents please give correct detail,"Deemed parent must have either a CTUTR, a SAUTR or a country code","See also line 102
-Mike to advise
-If you enter a CTUTR, SAUTR and a country code - you shouldn't be able to enter all three.",,,
-,deemedParentsEmpty,deemedParent must have at least 1 deemed parent if supplied,Add at least 1 deemed parent,REMOVE,,,
-4.4,endDateAfterStartDate,End Date must be after start date,End date of the group's period of account must be after start date of the group's period of account,,,,
-,,,End date must be the same as or after 2017-04-01,Not currently in the list - need to add,,,
-"4.1,4.9",expenseAndIncomeBothNotGreaterThanZero,A company can not have both a net tax interest expense and a net tax interest income,A company cannot have both net tax interest expense and net tax interest outcome,Co not group here,,,
-,groupCompanyDetailsTotalCompaniesError,totalCompanies is [TOTAL COMPANIES] but it must be greater than 0 and less than 32767,,"No message as likely to be removed.
-This field will be removed in favour of number of UK companies - 
-derived value 
-Total companies must be greater than 0",,,
-5.3,groupEBITDADecimalError,groupEBITDA has greater than the allowed 2 decimal places.,Group EBITDA must be to 2 decimal places or less,,,,
-5.3,groupEBITDANotSupplied,"Group Ratio is elected, must provide groupEBITDAChargeableGains Election",Group ratio elected so Group EBITDA chargeable gains election required,,,,
-5.3,groupEBITDASupplied,"Group Ratio is not elected, unable to elect groupEBITDAChargeableGains Election",Group ratio not elected so group EBITDA chargeable gains election not required,,,,
-4.13,interestAllowanceForPeriodCannotBeNegative,interestAllowanceForPeriod cannot be negative,Interest allowance for the period must be a positive number,,,,
-4.12,interestAllowanceBroughtForwardCannotBeNegative,interestAllowanceBroughtForward cannot be negative,Interest allowance brought forward must be a positive number,,,,
-4.15,interestCapacityForPeriodCannotBeNegative,interestCapacityForPeriod cannot be negative,Interest capacity for the period must be a positive number,,,,
-4.13,interestAllowanceForPeriodDecimalError,interestAllowanceForPeriod has greater than the allowed 2 decimal places.,Interest allowance brought forward must be to 2 decimal places or less,,,,
-4.12,interestAllowanceBroughtForwardDecimalError,interestAllowanceBroughtForward has greater than the allowed 2 decimal places.,Interest allowance brought forward must be to 2 decimal places or less,,,,
-4.15,interestCapacityForPeriodDecimalError,interestCapacityForPeriod has greater than the allowed 2 decimal places.,Interest capacity for the period must be to 2 decimal places or less,,,,
-"4.1, 4.9",groupLevelInterestRestrictionsAndReactivationSupplied,You cannot supply both a group level restriction and reactivation in the same return,Cannot have group level restriction and reactivation,Add 'you cannot have both? - check with Devs,,,
-5.5,groupRatioBlendedNotElectedError,"Group Ratio Blended is not elected, unable to supply investor group",,,,,
-5.5,groupRatioBlendedNotSupplied,"Group Ratio is elected, must supply GroupRatioBlended Election","If group ratio is elected, group ratio blended election must be provided",Is this logic correct? It's a boolean,,,
-5.5,groupRatioBlendedSupplied,"Group Ratio is not elected, unable to elect GroupRatioBlended Election",,,,,
-5.4,groupRatioCalculationError,"The value for Group Ratio Percent you provided [GROUP RATIO], does not match the value calculated from the provided QNGIE ([QNGIE]) and group-EBITDA [GROUP EBITDA], [CALCULATED GROUP RATIO]'",The vaue of the group ratio percentage must match the value calculated by dividing the QNGIE by the group EBITDA,QNGIE warning to say we think this group ratio percentage is wrong based on the figures you've given us,,,
-5.4,groupRatioDecimalError,groupRatio has greater than the allowed 5 decimal places.,Group ratio must be to 5 decimal places or less,,,,
-5.4,groupRatioError,Group Ratio must be between 0 and 100%,Group ratio must be between 0% and 100%,,,,
-4.11,interestReactivationCapNotSupplied,Interest Reactivation Cap is required if the group is subject to interest reactivation,Group is subject to interest reactivation so interest reactivation cap required,,,,
-,investorGroupsEmpty,investorGroups must have at least 1 investor if supplied,,"REMOVE. Mike to confirm: Add investor group Y/N is a field in API? If it is then this question is ok, if not then it's obsolete.",,,
-3.2,maxThreeDeemedParents,Max number of deemed Parents can only be three,Maximum number of deemed parents is 3,these are entities in UI/FE,,,
-3.2,minTwoDeemedParents,Min number of deemed Parent can only be two,Minimumn number of deemed parents is 2,these are entities in UI/FE,,,
-6.15,missingAllocatedReactivationsForCompanies,Allocated Reactivations must be supplied for this UK Company when the group is subject to Interest Reactivation,Enter allocated reactivation for this company. Enter 0 if there is no allocated reactivation,Chatted through with Jackie on 12.05.2021,,,
-6.13,missingAllocatedRestrictionsForCompanies,Allocated Restrictions must be supplied for this UK Company when the group is subject to Interest Restriction,Enter allocated restriction for this company. Enter 0 if there is no allocated restriction ,Chatted through with Jackie on 12.05.2022,,,
-5.8,negativeAngieError,ANGIE cannot be negative,ANGIE must be a positive number,Chatted through with Jackie on 12.05.2023,,,
-5.3,negativeOrZeroGroupEBITDAError,"If group-EBITDA is negative or zero, groupRatio must be set to 100","If group EBITDA is negative or 0, set group ratio to 100",Chatted through with Jackie on 12.05.2024,,,
-5.4,negativeOrZeroGroupRatioError,If group ratio calculation is negative then group ratio should be 100%,If group ratio calculation is negative then set group ratio to 100%,Chatted through with Jackie on 12.05.2025,,,
-6.4,netTaxInterestExpenseDecimalError,The supplied Net Tax Interest Expense has greater than the allowed 2 decimal places.,Net tax interest expense must be to 2 decimal places or less,Chatted through with Jackie on 12.05.2026,,,
-6.4,netTaxInterestExpenseError,"The supplied Net Tax Interest Expense is Negative, which it can not be.",Net tax interest expense must be a positive number,Chatted through with Jackie on 12.05.2027,,,
-6.5,netTaxInterestIncomeDecimalError,The supplied Net Tax Interest Income has greater than the allowed 2 decimal places.,Net tax interest income must be to 2 decimal places or less,Chatted through with Jackie on 12.05.2028,,,
-6.5,netTaxInterestIncomeError,"The supplied Net Tax Interest Income is Negative, which it can not be.",0,Chatted through with Jackie on 12.05.2029,,,
-6.13,noTotalNetTaxInterestIncomeDuringRestriction,You cannot have a Net Tax Interest Income when you apply a restriction,A company with net tax income cannot have a restriction allocated to it ,Chatted through with Jackie on 12.05.2030,,,
-5.13,nonConsolidatedInvestmentNameCharacterError,Investment name contains invalid character,Investment name contains invalid characters,Ask devs what is an invalid character,,,
-5.13,nonConsolidatedInvestmentNameLengthError,Investment name is [LENGTH] characters long and should be between 1 and 5000 character,Investment name must be between 1 and 5000 characters,"Is this correct, 5000 characters in this question? Flag size of field and inconsistency with other fields",,,
-5.13,nonConsolidatedInvestmentNotSupplied,You must provide non-consolidated investments if non-consolidated election is made,"Interest allowance for non consolidated investments elected, add at least 1 non-consolidated investment",What's the differnce between this and line 80?,,,
-5.13,nonConsolidatedInvestmentSupplied,You can only provide non-consolidated investments if non-consolidated election is made,Interest allowance for non consolidated investments not elected so non-consolidated investments not needed,,,,
-5.13,nonConsolidatedInvestmentEmpty,nonConsolidatedInvestments must contain at least 1 value if supplied,Non consolidated investments elected so add at least 1 investment,NCI elected but passed a list that's empty - see line 78,,,
-3.2,parentCompanyCanNotBeUltimateAndDeemed,Parent Company Model cannot contain data for Ultimate and Deemed field,Parent Company Model must be either ultimate or deemed parent ,Parent company model?,,,
-3.2,parentCompanyDetailsNotSupplied,Parent Company is required if the Reporting Company is not the same as the Ultimate Parent,"Reporting company is not the ultimate parent, so details of ultimate parent needed",,,,
-3.2,parentCompanyDetailsSupplied,Parent Company should not be supplied as the parent is the same as the Reporting Company,Reporting company is the ultimate parent so details of parent company not needed,,,,
-5.2,qngieDecimalError,qngie has greater than the allowed 2 decimal places.,QNGIE must be to 2 decimal places or less,,,,
-1.1,reportingCompanyNotAppointed,You need to appoint a reporting company,Reporting company required,Field name here,,,
-6.13,restrictionNotGreaterThanExpense,A company can not have a allocated restriction greater than its net tax expense,A company cannot have a restriction greater than its net tax expense,Field name here,,,
-4.7,revisedReturnDetailsCharacterError,The revised return details contain invalid character,Revised return details contains invalid characters,Validation here?,,,
-4.7,revisedReturnDetailsLengthError,The revised return details are [LENGTH] characters long and should be between 1 and 5000 character,"Revised return details must be between 1 and 5,000 characters",,,,
-4.7,revisedReturnDetailsNotSupplied,A description of the amendments made to the return must be supplied if this is a revised return,"Return is a revised return, describe the changes made to the original return ",sense?,,,
-4.7,revisedReturnDetailsSupplied,A description of the amendments made to the return cannot be supplied if this is an original return,Return is not a revised return so changes to original return not needed,sense?,,,
-4.4,startDateCannotBeBeforeMinimum,Start date cannot be before 2016-10-01,Start date must be on or after 2016-10-01,specific date? Is this related to the date the law came into force and counting back using the WWG's poa?,,,
-4.4,startDateCannotBeInFuture,Start date cannot be in the future,Start date cannot be in the future,,,,
-6.6,taxEBITDADecimalError,The supplied Tax EBITDA has greater than the allowed 2 decimal places.,Tax EBITDA must be to 2 decimal places or less,,,,
-,totalReactivationsDecimalError,totalReactivation has greater than the allowed 2 decimal places.,Total reactivations must be to 2 decimal places or less,REMOVE,,,
-,totalReactivationsDoesNotMatch,Calculated reactivations is [CALCULATED AMOUNT] which does not match the supplied amount of [TOTAL REACTIVATIONS]',Total restrictions calculated does not match total restrictions given,REMOVE,,,
-6.15,totalReactivationsNotGreaterThanCapacity,Calculated Total Reactivations: [CALCULATED AMOUNT] cannot not be greater than Reactivations Capacity: [INTEREST REACTIVATION CAPACITY]',Total reactivations calculated cannot be greater than reactivations capacity ,cap?,,,
-4.16,totalRestrictionsDecimalError,totalRestrictions has greater than the allowed 2 decimal places.,Total restrictions must be to 2 decimal places or less,,,,
-4.16,totalRestrictionsDoesNotMatch,Calculated restrictions is [CALCULATED AMOUNT] which does not match the supplied amount of [TOTAL RESTRICTIONS]',Total restrictions calculated do not match ,,,,
-"2.2, 3.3, 3.5, 5.15, 6.2",uTRChecksumError,UTR Check Sum does not satisfy the check sum,UTR check sum given is not correct,,,,
-"2.2, 3.3, 3.5, 5.15, 6.3",uTRLengthError,UTR is [LENGTH] characters long and should be 10,UTR must be 10 numeric characters,,,,
-6.1,ukCompaniesEmpty,ukCompanies must have at least 1 UK company,UK companies must have at least 1 UK company,,,,
-"3.2,3.3,3.5,3.7,3.8",ultimateParentWrongDetailsSuppliedError,you have given the details for all three ultimate parents please give correct detail,"Parent company must have either a CTUTR, a SAUTR or a country code
-","See also line 41
-Not sure about this",,,
-"3.2,3.3,3.5,3.7,3.9",wrongDeemedParentIsUKCompanyAndNonUK,you have given details for a UK and Non UK Company,"Parent company must have either a CTUTR, a SAUTR or a country code
-",Enter either a UTR for a UK company or country code for a non UK company,"You can only enter one of CTUTR, sautr etc same message for all? This is incorrect",,
-"3.2,3.3,3.5,3.7,3.10",wrongDeemedParentIsUkCompanyAndPartnership,you have given details for a UK Company and Partnership,"Parent company must have either a CTUTR, a SAUTR or a country code
-","Enter a UTR for either a UK company or a partnership
-Add details for either a UK company or a partnership",,,
-"3.2,3.3,3.5,3.7,3.11",wrongDeemedParentIsUkPartnershipAndNonUKCompany,you have given details for a UK Partnership and NonUK Company,"Parent company must have either a CTUTR, a SAUTR or a country code
-","Enter either a UTR for a UK partnership or a country code for a non UK company
-Add details for either a UK partnership or a non UK company",,,
-"3.2,3.3,3.5,3.7,3.12",wrongUltimateParentIsUKCompanyAndNonUK,you have given details for a UK and Non UK Company,"Parent company must have either a CTUTR, a SAUTR or a country code
-",,,,
-"3.2,3.3,3.5,3.7,3.13",wrongUltimateParentIsUkCompanyAndPartnership,you have given details for a UK Company and Partnership,"Parent company must have either a CTUTR, a SAUTR or a country code
-",,,,
-"3.2,3.3,3.5,3.7,3.14",wrongUltimateParentIsUkPartnershipAndNonUKCompany,you have given details for a UK Partnership and NonUK Company,"Parent company must have either a CTUTR, a SAUTR or a country code
-",,,,
-,,When parent company is UK but there's no CT or SA UTR,Parent company is a UK company so CTUTR or SAUTR required,Parent company is a UK company so CTUTR or SAUTR required,,,
+Error Code,Error Message
+ADJUSTED_GROUP_INTEREST_NOT_SUPPLIED,"Group ratio elected so qngie, group-EBITDA and group ratio should be provided"
+ADJUSTED_GROUP_INTEREST_SUPPLIED,"Group ratio not elected so qngie, group-EBITDA and group ratio should not be provided"
+AGENT_NAME_CHARACTERS,Agent name contains invalid characters
+AGENT_NAME_LENGTH,Agent name must be between 1 and 160 characters
+AGENT_NAME_NOT_SUPPLIED,Agent acts on behalf of company so agent name needed
+AGENT_NAME_SUPPLIED,No agent so agent name not needed
+ANGIE_DECIMAL,ANGIE must be to 2 decimal places or less
+COMPANIES_EMPTY,You must provide details of all eligible UK companies
+COMPANIES_REACTIVATIONS,No reactivation can be allocated to this company because the group is not subject to reactivations
+COMPANIES_RESTRICTIONS,Group does not have an interest restriction so no allocated restrictions needed for this company
+COMPANY_ESTIMATE_REASON_SUPPLIED,"Return contains estimate field is set to false, so company estimate reason field cannot be sent"
+COMPANY_NAME_CHARACTERS,Company name contains invalid characters
+COMPANY_NAME_LENGTH,Company name must be 1 to 160 characters long
+COMPANY_REASON_CHARACTERS,Company estimate reason contains invalid characters
+COMPANY_REASON_LENGTH,"Estimate reason must be between 1 and 10,000 characters"
+COUNTRY_CODE_INVALID,Country code must be a valid ISO 3166-1 alpha-2 country code 
+COUNTRY_CODE_LENGTH,Country code must be 2 letters
+DATE_INVALID,Dates must be in the range 1900-01-01 to 2099-12-31
+DEEMED_EMPTY,Add at least 1 deemed parent
+DEEMED_MAX,Maximum number of deemed parents is 3
+DEEMED_MIN,Minimum number of deemed parents is 2
+DEEMED_PARENT_DETAILS,"Deemed parent must have either a CTUTR, a SAUTR or a country code"
+DEEMED_PARENT_UK,A UK deemed parent must have either a CTUTR or a SAUTR
+EBITDA_DECIMAL,Group EBITDA must be to 2 decimal places or less
+EBITDA_NEGATIVE,"If group EBITDA is negative or zero, set group ratio to 100"
+END_DATE_18_MONTHS,Period of account cannot be longer than 18 months 
+END_DATE_AFTER_GROUP_END_DATE,The end date of the third accounting period must be on or after the end date of the group's period of account
+END_DATE_BEFORE_GROUP_START_DATE,The end date of the first accounting period must be on or after the start date of the group's period of account
+END_DATE_BEFORE_PREVIOUS,End date of this accounting period cannot be equal to or before the end date of the preceding accounting period
+END_DATE_BEFORE_START,End date of the group's period of account must be after start date of the group's period of account
+END_DATE_CANNOT_BE_BEFORE_MIN,End date must be the same as or after 2017-04-01
+END_DATE_GREATER_THAN_12_MONTHS,End date entered can't be more than 12 months after the end date for the previous accounting period
+ESTIMATE_REASON_CHARACTERS,Estimate reason contains invalid characters
+ESTIMATE_REASON_NOT_SUPPLIED,"Return contains estimate field is set to true, so group estimate or company estimate reason needs to be provided"
+ESTIMATE_REASON_SUPPLIED,"Return contains estimate field is set to false, so group estimate reason field cannot be sent"
+EXPENSE_AND_INCOME,A company cannot have both net tax interest expense and net tax interest income
+EXPENSE_DECIMAL,Net tax interest expense must be to 2 decimal places or less
+GROUP_RATIO_BLENDED_NOT_SUPPLIED,"If group ratio is elected, a value for group ratio (blended) election must be provided"
+GROUP_RATIO_BLENDED_SUPPLIED,"Group ratio not elected, so group ratio blended not needed"
+GROUP_RATIO_CALC,The value of the group ratio percentage must match the value calculated by dividing the QNGIE by the group EBITDA
+GROUP_RATIO_DECIMAL,Group ratio must be to 5 decimal places or less
+GROUP_RATIO_NEGATIVE,If group ratio calculation is negative then set group ratio to 100%
+GROUP_RATIO_RANGE,Group ratio must be between 0% and 100%
+INCOME_AND_RESTRICTION,A company with net tax-interest income cannot have a restriction allocated to it
+INCOME_DECIMAL,Net tax interest income must be to 2 decimal places or less
+INTEREST_ALLOWANCE_FORWARD_DECIMAL,Interest allowance brought forward must be to 2 decimal places or less
+INTEREST_ALLOWANCE_FORWARD_NEGATIVE,Interest allowance brought forward must be a positive number or zero
+INTEREST_ALLOWANCE_PERIOD_DECIMAL,Interest allowance for the period must be to 2 decimal places or less
+INTEREST_ALLOWANCE_PERIOD_NEGATIVE,Interest allowance for the period must be a positive number or zero
+INTEREST_CAP_PERIOD_DECIMAL,Interest capacity for the period must be to 2 decimal places or less
+INTEREST_CAP_PERIOD_NEGATIVE,Interest capacity for the period must be a positive number or zero
+INVESTMENT_CHARACTERS,Investment name contains invalid characters
+INVESTMENT_EMPTY,Non consolidated investments elected so add at least 1 investment
+INVESTMENT_LENGTH,Investment name must be between 1 and 5000 characters
+INVESTMENT_NOT_SUPPLIED,"Interest allowance (non-consolidated investments) election made, add at least 1 non-consolidated investment"
+INVESTMENT_SUPPLIED,"Interest allowance (non-consolidated investments) election not made, so no details of non-consolidated investments needed"
+INVESTOR_GROUPS_EMPTY,Investor groups must have at least 1 investor
+INVESTOR_GROUPS_SUPPLIED,Group ratio not elected so supply investor group not required
+LEI_CHARACTER,Legal entity identifier must be 18 uppercase letters followed by 2 numbers
+NEGATIVE_ANGIE,ANGIE must be a positive number
+NEGATIVE_EXPENSE,Net tax interest expense must be a positive number
+NEGATIVE_INCOME,Net tax interest income must be a positive number
+PARENT_COMPANY_NOT_SUPPLIED,"Reporting company is not the ultimate parent, so details of ultimate parent needed"
+PARENT_COMPANY_SUPPLIED,Reporting company is the ultimate parent so details of parent company not needed
+PARENT_ULTIMATE_AND_DEEMED,Parent company must be either ultimate or deemed parent
+PARTNERSHIPS_EMPTY,"Interest allowance (non-consolidated partnerships) election made, enter details of at least 1 non-consolidated partnership"
+PARTNERSHIPS_NOT_SUPPLIED,"Interest allowance (non-consolidated partnerships) election made, enter details of at least 1 non-consolidated partnership"
+PARTNERSHIPS_SUPPLIED,"Interest allowance (non-consolidated partnerships) election not made, so no details of non-consolidated partnership needed"
+QNGIE_DECIMAL,QNGIE must be to 2 decimal places or less
+REACTIVATION_CAP_PERIOD_DECIMAL,Interest reactivation cap must be to 2 decimal places or less
+REACTIVATION_CAP_PERIOD_NEGATIVE,Interest reactivation cap must be a positive number or zero
+REACTIVATION_CAP_SUBJECT_REACTIVATIONS,Reactivation cap not needed as group is not subject to reactivations
+REACTIVATIONS_DECIMAL,Current period reactivation must be to 2 decimal places or less
+REACTIVATIONS_GREATER_THAN_CAP,Total reactivations calculated cannot be greater than reactivation cap
+REACTIVATIONS_NEGATIVE,Current period reactivation must be a positive number
+REPORTING_COMPANY_NOT_APPOINTED,Reporting company required
+RESTRICTION_DECIMAL,Amount of disallowance for this accounting period must be to 2 decimal places or less
+RESTRICTION_GREATER_THAN_EXPENSE,A company cannot have a restriction greater than its tax-interest expense
+RESTRICTION_MISSING_PREVIOUS,Accounting period [INDEX] end date cannot be given as previous accounting period is missing
+RESTRICTION_NEGATIVE,Disallowance for the accounting period [INDEX] must be a positive number
+RESTRICTION_NOT_SUPPLIED,There is an accounting period [INDEX] end date so there must be a disallowance for that period. The disallowance can also be zero
+RESTRICTION_REACTIVATION_SUPPLIED,Cannot have group level restriction and reactivation
+RESTRICTION_SUPPLIED,No accounting period [INDEX] end date so no disallowance needed for that period
+RETURN_DECLARATION_FALSE,Declaration is not valid so will not be submitted. You need to confirm that the return is correct and complete to the best of your knowledge
+REVISION_DETAILS_CHARACTERS,Revised return details contains invalid characters
+REVISION_DETAILS_LENGTH,"Revised return details must be between 1 and 5,000 characters"
+REVISION_DETAILS_NOT_SUPPLIED,"Return is a revised return, describe the changes made to the original return"
+REVISION_DETAILS_SUPPLIED,Return is not a revised return so changes to original return not needed
+START_DATE_CANNOT_BE_BEFORE_MIN,Start date must be on or after 2016-10-01
+START_DATE_CANNOT_BE_IN_FUTURE,Start date cannot be in the future
+SUBJECT_RESTRICTION_NET_INCOME,The group cannot be subject to restrictions and have an aggregate net tax-interest income
+TAX_EBITDA_DECIMAL,Tax EBITDA must be to 2 decimal places or less
+TOTAL_RESTRICTIONS_DECIMAL,Total restrictions must be to 2 decimal places or less
+TOTAL_RESTRICTIONS_EXCEEDS_EXPENSE,The total restriction exceeds aggregate net-tax interest expense
+TOTAL_RESTRICTIONS_MATCH,Total of restrictions allocated does not match group disallowed amount
+ULTIMATE_DETAILS,"Parent company must have either a CTUTR, a SAUTR or a country code"
+ULTIMATE_PARENT_COUNTRY,Enter a country of incorporation where the ultimate parent is non-UK
+ULTIMATE_PARENT_NOT_SUPPLIED,Ultimate parent company must be entered if it is not the same as the reporting company
+ULTIMATE_PARENT_UTR,Enter a UTR where the ultimate parent is UK
+UTR_CHECKSUM,UTR given is not valid
+UTR_LENGTH,UTR must be 10 numeric characters
