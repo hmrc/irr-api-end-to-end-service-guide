@@ -8,12 +8,13 @@ COMPANY_NAME_CHARACTERS,Company name contains invalid characters
 COMPANY_NAME_LENGTH,Company name must be 1 to 160 characters long
 COUNTRY_CODE_INVALID,Country code must be a valid ISO 3166-1 alpha-2 country code 
 COUNTRY_CODE_LENGTH,Country code must be 2 letters
-DATE_INVALID,Dates must be in the range 1900-01-01 to 2099-12-31
+COUNTRY_CODE_SHOULD_NOT_BE_ENTERED,"Country code should not be entered if GB, use a UTR instead"
 DEEMED_EMPTY,Add at least 1 deemed parent
 DEEMED_MAX,Maximum number of deemed parents is 3
 DEEMED_MIN,Minimum number of deemed parents is 2
+DEEMED_PARENT_COUNTRY,Enter a country of incorporation where the deemed parent is non-UK
 DEEMED_PARENT_DETAILS,"Deemed parent must have either a CTUTR, a SAUTR or a country code"
-DEEMED_PARENT_UK,A UK deemed parent must have either a CTUTR or a SAUTR
+DEEMED_PARENT_UTR,Enter a UTR where the deemed parent is UK
 END_DATE_18_MONTHS,Period of account cannot be longer than 18 months 
 END_DATE_BEFORE_START,End date of the group's period of account must be after start date of the group's period of account
 END_DATE_CANNOT_BE_BEFORE_MIN,End date must be the same as or after 2017-04-01
@@ -25,24 +26,25 @@ INVESTMENT_LENGTH,Investment name must be between 1 and 5000 characters
 INVESTMENT_NOT_SUPPLIED,"Interest allowance (non-consolidated investments) election made, add at least 1 non-consolidated investment"
 INVESTMENT_SUPPLIED,"Interest allowance (non-consolidated investments) election not made, so no details of non-consolidated investments needed"
 INVESTOR_GROUPS_EMPTY,Investor groups must have at least 1 investor
-INVESTOR_GROUPS_SUPPLIED,Group ratio not elected so supply investor group not required
+INVESTOR_GROUPS_SUPPLIED,Group ratio blended not elected so supply investor group not required
+JSON_VALIDATION_ERROR,Valid submission types are original and revised
 LEI_CHARACTER,Legal entity identifier must be 18 uppercase letters followed by 2 numbers
-PARENT_COMPANY_NOT_SUPPLIED,"Reporting company is not the ultimate parent, so details of ultimate parent needed"
+PARENT_COMPANY_NOT_SUPPLIED,"Reporting company is not the ultimate parent, so details of ultimate parent or deemed parent needed"
 PARENT_COMPANY_SUPPLIED,Reporting company is the ultimate parent so details of parent company not needed
 PARENT_ULTIMATE_AND_DEEMED,Parent company must be either ultimate or deemed parent
-PARTNERSHIPS_EMPTY,"Interest allowance (non-consolidated partnerships) election made, enter details of at least 1 non-consolidated partnership"
-PARTNERSHIPS_NOT_SUPPLIED,"Interest allowance (non-consolidated partnerships) election made, enter details of at least 1 non-consolidated partnership"
-PARTNERSHIPS_SUPPLIED,"Interest allowance (non-consolidated partnerships) election not made, so no details of non-consolidated partnership needed"
+PARTNERSHIPS_EMPTY,"Interest allowance (consolidated partnerships) election made, enter details of at least 1 consolidated partnership"
+PARTNERSHIPS_NOT_SUPPLIED,"Interest allowance (consolidated partnerships) election made, enter details of at least 1 consolidated partnership"
+PARTNERSHIPS_SUPPLIED,"Interest allowance (consolidated partnerships) election not made, so no details of consolidated partnership needed"
 REPORTING_COMPANY_NOT_APPOINTED,Reporting company required
+RETURN_DECLARATION_FALSE,Declaration is not valid so will not be submitted. You need to confirm that the return is correct and complete to the best of your knowledge
 REVISION_DETAILS_CHARACTERS,Revised return details contains invalid characters
 REVISION_DETAILS_LENGTH,"Revised return details must be between 1 and 5,000 characters"
 REVISION_DETAILS_NOT_SUPPLIED,"Return is a revised return, describe the changes made to the original return"
 REVISION_DETAILS_SUPPLIED,Return is not a revised return so changes to original return not needed
 START_DATE_CANNOT_BE_BEFORE_MIN,Start date must be on or after 2016-10-01
 START_DATE_CANNOT_BE_IN_FUTURE,Start date cannot be in the future
-ULTIMATE_DETAILS,"Parent company must have either a CTUTR, a SAUTR or a country code"
+ULTIMATE_DETAILS,"Ultimate parent must have either a CTUTR, a SAUTR or a country code"
 ULTIMATE_PARENT_COUNTRY,Enter a country of incorporation where the ultimate parent is non-UK
-ULTIMATE_PARENT_NOT_SUPPLIED,Ultimate parent company must be entered if it is not the same as the reporting company
 ULTIMATE_PARENT_UTR,Enter a UTR where the ultimate parent is UK
 UTR_CHECKSUM,UTR given is not valid
 UTR_LENGTH,UTR must be 10 numeric characters

@@ -6,7 +6,7 @@ description: Software developers, designers, product owners or business analysts
 
 # Interest Restriction Return (IRR) end-to-end service guide
 
-Version 0.4 issued 3 June 2021
+Version 0.5 issued 16 June 2021
 ***
 
 ## Overview
@@ -65,6 +65,15 @@ For in depth information about user restricted endpoints, together with examples
 
 ## Changelog
 <!--- Section owner: IRR Programme --->
+
+### Version 0.5
+
+16 June 2021
+
+What changed:
+
+* Alterations to overview
+* Update business rules & error messages
 
 ### Version 0.4
 

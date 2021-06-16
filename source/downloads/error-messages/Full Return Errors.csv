@@ -13,15 +13,17 @@ COMPANY_ESTIMATE_REASON_SUPPLIED,"Return contains estimate field is set to false
 COMPANY_NAME_CHARACTERS,Company name contains invalid characters
 COMPANY_NAME_LENGTH,Company name must be 1 to 160 characters long
 COMPANY_REASON_CHARACTERS,Company estimate reason contains invalid characters
-COMPANY_REASON_LENGTH,"Estimate reason must be between 1 and 10,000 characters"
+COMPANY_REASON_LENGTH,"Estimate reason must be between 1 and 5,000 characters"
 COUNTRY_CODE_INVALID,Country code must be a valid ISO 3166-1 alpha-2 country code 
 COUNTRY_CODE_LENGTH,Country code must be 2 letters
+COUNTRY_CODE_SHOULD_NOT_BE_ENTERED,"Country code should not be entered if GB, use a UTR instead"
 DATE_INVALID,Dates must be in the range 1900-01-01 to 2099-12-31
 DEEMED_EMPTY,Add at least 1 deemed parent
 DEEMED_MAX,Maximum number of deemed parents is 3
 DEEMED_MIN,Minimum number of deemed parents is 2
+DEEMED_PARENT_COUNTRY,Enter a country of incorporation where the deemed parent is non-UK
 DEEMED_PARENT_DETAILS,"Deemed parent must have either a CTUTR, a SAUTR or a country code"
-DEEMED_PARENT_UK,A UK deemed parent must have either a CTUTR or a SAUTR
+DEEMED_PARENT_UTR,Enter a UTR where the deemed parent is UK
 EBITDA_DECIMAL,Group EBITDA must be to 2 decimal places or less
 EBITDA_NEGATIVE,"If group EBITDA is negative or zero, set group ratio to 100"
 END_DATE_18_MONTHS,Period of account cannot be longer than 18 months 
@@ -32,15 +34,15 @@ END_DATE_BEFORE_START,End date of the group's period of account must be after st
 END_DATE_CANNOT_BE_BEFORE_MIN,End date must be the same as or after 2017-04-01
 END_DATE_GREATER_THAN_12_MONTHS,End date entered can't be more than 12 months after the end date for the previous accounting period
 ESTIMATE_REASON_CHARACTERS,Estimate reason contains invalid characters
+ESTIMATE_REASON_LENGTH,"Estimate reason must be between 1 and 10,000 characters"
 ESTIMATE_REASON_NOT_SUPPLIED,"Return contains estimate field is set to true, so group estimate or company estimate reason needs to be provided"
 ESTIMATE_REASON_SUPPLIED,"Return contains estimate field is set to false, so group estimate reason field cannot be sent"
 EXPENSE_AND_INCOME,A company cannot have both net tax interest expense and net tax interest income
 EXPENSE_DECIMAL,Net tax interest expense must be to 2 decimal places or less
 GROUP_RATIO_BLENDED_NOT_SUPPLIED,"If group ratio is elected, a value for group ratio (blended) election must be provided"
 GROUP_RATIO_BLENDED_SUPPLIED,"Group ratio not elected, so group ratio blended not needed"
-GROUP_RATIO_CALC,The value of the group ratio percentage must match the value calculated by dividing the QNGIE by the group EBITDA
+GROUP_RATIO_CALC,The value of the group ratio percentage must match the value calculated by dividing the QNGIE by the group EBITDA then multiplying it by 100
 GROUP_RATIO_DECIMAL,Group ratio must be to 5 decimal places or less
-GROUP_RATIO_NEGATIVE,If group ratio calculation is negative then set group ratio to 100%
 GROUP_RATIO_RANGE,Group ratio must be between 0% and 100%
 INCOME_AND_RESTRICTION,A company with net tax-interest income cannot have a restriction allocated to it
 INCOME_DECIMAL,Net tax interest income must be to 2 decimal places or less
@@ -56,18 +58,20 @@ INVESTMENT_LENGTH,Investment name must be between 1 and 5000 characters
 INVESTMENT_NOT_SUPPLIED,"Interest allowance (non-consolidated investments) election made, add at least 1 non-consolidated investment"
 INVESTMENT_SUPPLIED,"Interest allowance (non-consolidated investments) election not made, so no details of non-consolidated investments needed"
 INVESTOR_GROUPS_EMPTY,Investor groups must have at least 1 investor
-INVESTOR_GROUPS_SUPPLIED,Group ratio not elected so supply investor group not required
+INVESTOR_GROUPS_SUPPLIED,Group ratio blended not elected so supply investor group not required
+JSON_VALIDATION_ERROR,Valid submission types are original and revised
 LEI_CHARACTER,Legal entity identifier must be 18 uppercase letters followed by 2 numbers
 NEGATIVE_ANGIE,ANGIE must be a positive number
 NEGATIVE_EXPENSE,Net tax interest expense must be a positive number
 NEGATIVE_INCOME,Net tax interest income must be a positive number
-PARENT_COMPANY_NOT_SUPPLIED,"Reporting company is not the ultimate parent, so details of ultimate parent needed"
+PARENT_COMPANY_NOT_SUPPLIED,"Reporting company is not the ultimate parent, so details of ultimate parent or deemed parent needed"
 PARENT_COMPANY_SUPPLIED,Reporting company is the ultimate parent so details of parent company not needed
 PARENT_ULTIMATE_AND_DEEMED,Parent company must be either ultimate or deemed parent
-PARTNERSHIPS_EMPTY,"Interest allowance (non-consolidated partnerships) election made, enter details of at least 1 non-consolidated partnership"
-PARTNERSHIPS_NOT_SUPPLIED,"Interest allowance (non-consolidated partnerships) election made, enter details of at least 1 non-consolidated partnership"
-PARTNERSHIPS_SUPPLIED,"Interest allowance (non-consolidated partnerships) election not made, so no details of non-consolidated partnership needed"
+PARTNERSHIPS_EMPTY,"Interest allowance (consolidated partnerships) election made, enter details of at least 1 consolidated partnership"
+PARTNERSHIPS_NOT_SUPPLIED,"Interest allowance (consolidated partnerships) election made, enter details of at least 1 consolidated partnership"
+PARTNERSHIPS_SUPPLIED,"Interest allowance (consolidated partnerships) election not made, so no details of consolidated partnership needed"
 QNGIE_DECIMAL,QNGIE must be to 2 decimal places or less
+QNGIE_NEGATIVE,QNGIE must be a positive number
 REACTIVATION_CAP_PERIOD_DECIMAL,Interest reactivation cap must be to 2 decimal places or less
 REACTIVATION_CAP_PERIOD_NEGATIVE,Interest reactivation cap must be a positive number or zero
 REACTIVATION_CAP_SUBJECT_REACTIVATIONS,Reactivation cap not needed as group is not subject to reactivations
@@ -94,9 +98,8 @@ TAX_EBITDA_DECIMAL,Tax EBITDA must be to 2 decimal places or less
 TOTAL_RESTRICTIONS_DECIMAL,Total restrictions must be to 2 decimal places or less
 TOTAL_RESTRICTIONS_EXCEEDS_EXPENSE,The total restriction exceeds aggregate net-tax interest expense
 TOTAL_RESTRICTIONS_MATCH,Total of restrictions allocated does not match group disallowed amount
-ULTIMATE_DETAILS,"Parent company must have either a CTUTR, a SAUTR or a country code"
+ULTIMATE_DETAILS,"Ultimate parent must have either a CTUTR, a SAUTR or a country code"
 ULTIMATE_PARENT_COUNTRY,Enter a country of incorporation where the ultimate parent is non-UK
-ULTIMATE_PARENT_NOT_SUPPLIED,Ultimate parent company must be entered if it is not the same as the reporting company
 ULTIMATE_PARENT_UTR,Enter a UTR where the ultimate parent is UK
 UTR_CHECKSUM,UTR given is not valid
 UTR_LENGTH,UTR must be 10 numeric characters
