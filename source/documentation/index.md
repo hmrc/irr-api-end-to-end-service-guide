@@ -12,13 +12,13 @@ Version 0.4 issued 3 June 2021
 ## Overview
 <!-- Section owner: IRR Programme -->
 
-When calculating how much UK corporation tax a company or group has to pay, there's a limit to the amount of tax relief allowed for deducting net interest and other financing costs.
+When calculating how much UK corporation tax a company or group has to pay, there's a limit to the amount of tax relief allowed for deducting interest and other financing costs.
 
-On 1st April 2017, new Corporate Interest Restriction Return (IRR) legislation came into effect. New rules were introduced to limit tax deduction for interest expense and other similar financing costs.
+On 1st April 2017, new Corporate Interest Restriction (CIR) legislation came into effect. New rules were introduced to limit tax deduction for interest expense and other similar financing costs.
 
-If a group has more than £2 million in net interest and meets the requirements outlined in the legislation, they are required to appoint a reporting group within six months of the account period end.
+If a group has more than £2 million (per annum) in net interest expense, they may be subject to a restriction under the rules. If so, it is usually beneficial for the group to appoint a reporting company (within twelve months of the end of the period of account), to submit returns on behalf of the group. This may be the case even where the group only consists of one company.
 
-The nominated reporting company group must then submit a group level interest restriction return on behalf of the company or group. The return is then checked by HMRC to ensure it meets the legislation.
+The appointed reporting company must then submit a group level interest restriction return on behalf of the group. The deadline for submitting the return is usually twelve months from the end of the CIR period of account.
 
 This guide explains how you can use the Interest Restriction Return API with your software
 
