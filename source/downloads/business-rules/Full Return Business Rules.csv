@@ -1,24 +1,22 @@
 ID,Data Item,Data validation,Mandatory (M)/Optional(O),Business Rules
 1.  Start a return,,,,
-1.1,Has a reporting company been appointed,Yes/No,M,"When 'Has a reporting company been appointed' = No, then an error page advising the user that they will need to appoint a reporting company will be displayed and the use will not be able to continue with the return"
-1.2,Agent Acting On Behalf of company?,Yes/No,M,
-1.3,Name of Agent,"String
-min 1 , max 160",M if 1.2 = true,"Must be completed if item 1.2 - Agent acting on behalf of company is = YES
-An Error message will be displayed if data is not provided"
-1.4,Is this an Abbreviated or Full return,Full/Abbreviated,M,An Error message will be displayed if data is not provided
-2. About the Reporting company,,,,
-2.1,Reporting company name,"String
-Companies House Character Validation
-min 1 max 160 chars",M,An Error message will be displayed if data is not provided
-2.2,UK Tax reference - CT UTR,"10 digits
+1.1,appointedReportingCompany,True/False,M,"If answer = True, then an error message will be returned advising a reporting company needs to be appointed before being able to continue with the return"
+1.2,agentActingOnBehalfOfCompany,True/False,M,An Error message will be returned if data is not provided
+1.3,agentName,"String
+min 1 , max 160",M if 1.2 = true,"Must be completed if item 1.2 - Agent acting on behalf of company is = True
+An Error message will be returned if data is not provided"
+2. About the Reporting company (reportingCompany),,,,
+2.1,companyName,"String
+min 1 max 160 chars",M,An Error message will be returned if data is not provided
+2.2,ctutr,"10 digits
 min 10, max 10
-Use UTR Check Sum to validate the UTR",M,An Error message will be displayed if data is not provided
-3. About the Group Structure,,,,
-3.1,Is the reporting Company the same as the ultimate parent?,Yes/No,M,"If answer = YES, the Ultimate Parent Company details will not be populated as details are already captured in reporting company details
+Use UTR Check Sum to validate the UTR",M,An Error message will be returned if data is not provided
+3. About the Group Structure (parentCompany),,,,
+3.1,sameAsUltimateParent,True/False,M,"If answer = True, the Ultimate Parent Company details will not be populated as details are already captured in reporting company details
   
-If answer = No, then capture Ultimate Parent Company or Deemed parent company section details 
-An Error message will be displayed if data is not provided
-NOTE: If Reporting Company is same as the Ultimate Parent company, The Ultimate parent company details are not required for manual entry. (Not displayed)"
+If answer = False, then capture Ultimate Parent Company or Deemed parent company section details 
+An Error message will be returned if data is not provided
+"
 "Ultimate Parent Company or Deemed Parent Company
  
 ",,,,"General rules:
@@ -27,251 +25,244 @@ The return MUST identify if it is an Ultimate Parent Company or Deemed entities 
 The return cannot have both an Ultimate Parent company AND Deemed parents companies
 When deemed, there MUST be a minimum or two and up to three Deemed entities (companies)"
 "Parent company -  UK tax presence (If non-UK, see section below from item 11)",,,,
-3.2,"(Ultimate or Deemed Parent )
-Ultimate Parent company registered name
-OR
-Deemed company name","String
-min 1 , max 160","M if not a deemed company
-","An Error message will be displayed if an Ultimate Parent Company name or Deemed Company name is not provided
-An Error message will be displayed if an Ultimate Parent Company name AND a Deemed Company name is provided"
-3.3,"(Ultimate or Deemed Parent )
-CT UTR","10 digit numerical
-min 10 max 10 chars,
-","M if = UKand No SA UTR
+3.2,"(Ultimate or Deemed Parent)
+companyName","String
+min 1 , max 160","M 
+","An Error message will be returned if an Ultimate Parent companyName or Deemed companyName is not provided
+An Error message will be returned if an Ultimate Parent companyName AND a Deemed companyName is provided"
+3.3,"(Ultimate or Deemed Parent)
+ctutr","10 digits
+min 10, max 10
+Use UTR Check Sum to validate the UTR","M if = UKand No SA UTR
 ","Mandatory if a UK tax presence parent company 
-An Error message will be displayed if data is not provided
+An Error message will be returned if data is not provided
 ·  If CT UTR is present, then 'Country of incorporation' cannot be present"
 3.5,"(Ultimate or Deemed Parent)
-SA UTR",,"M if = UK and no CT UTR is entered
+sautr","10 digits
+min 10, max 10
+Use UTR Check Sum to validate the UTR","M if = UK and no CT UTR is entered
 ",An SA UTR must be provided if the Parent Company is a Limited Liability Partnership (LLP) or NO CT UTR is present
 Parent Company -  Non- UK tax presence,,,,
-3.7,"Ultimate Parent company registered name
-OR
-Deemed company name","String
-min 1 , max 160",M,An Error message will be displayed if data is not provided
-3.8,"(Ultimate or Deemed Parent )
-Country of incorporation","2 chars
-Stored as  ISO 3166-1 alpha-2 format",M,"Display country name to user
-If 'Country of incorporation' is present, then 'CT UTR'cannot be present"
-3.9,Legal Entity Identifier,"20-character, alpha-numeric",O,LEI is an alpha numerical field that is 20 characters in length
-4. Group level information,,,,
-4.2,Number of UK companies in the group,"Numeric
-min 1, max 32767",M,"Derived figure from the number of companies listed in section - List all UK Group companies
+3.7,"(Ultimate or Deemed Parent)
+companyName","String
+min 1 , max 160",M,An Error message will be returned if data is not provided
+3.8,"(Ultimate or Deemed Parent)
+countryofIncorporation","2 chars
+Stored as  ISO 3166-1 alpha-2 format",M,"If 'Country of incorporation' is present, then 'CT UTR'cannot be present"
+3.9,legalEntityIdentifier,"20-character, alpha-numeric",O,LEI is an alpha numerical field that contains 18 uppercase letters followed by 2 numbers 
+4. Group level information (groupCompanyDetails),,,,
+4.2,numberOfUkCompanies,,,"Derived figure from the number of companies listed in section - List all UK Group companies
 (When the 'List all UK Group companies' has been completed, then the calculated number of entries in the list will be populated in this data item)"
-4.3,Inclusion of non consenting companies in relation to this return Y/N,Yes/No,M,"Where a company in the list of UK companies has declared they are non-consenting, then item 'Inclusion of non consenting companies in relation to this return' = YES
-Where no company in the list of UK companies has declared they are non-consenting, then item 'Inclusion of non consenting companies in relation to this return' = No"
-4.4,Start date of worldwide group of account,"standard GDS date format
+4.4,"(accountingPeriod)
+startDate","standard GDS date format
 dd/mm/yyyy
-Date can not be before 01/10/16",M,"Cannot be a future date
+",M,"Cannot be a future date
 Back-end date to be stored as : ISO 8601 YYYY-MM-DD
-An Error message will be displayed if data is not provided
-NOTE: No rules required on how far in the past a start date can be. Rules suffice on the End date."
-4.5,End date of worldwide group of account,"standard GDS date format 
+An Error message will be returned if data is not provided
+Date can not be before 01/10/16"
+4.5,"(accountingPeriod)
+endDate","standard GDS date format 
 dd/mm/yyyy
 End dates can't be before 1st April 2017.",M,"The end date must be a min of 1 day and a max of 18 months after the start date 
-Error will be displayed if the end date is more than 18 months after the start date .
+Error will be returned if the end date is more than 18 months after the start date .
 Back-end date to be stored as : ISO 8601 YYYY-MM-DD
-An Error message will be displayed if data is not provided"
-4.6,Is this an original or revised return,Original/Revised,M,An Error message will be displayed if data is not provided
-4.8,Does the return contain estimates?,Yes/No,M,An Error message will be displayed if data is not provided
-4.9,Group subject to interest restrictions?,Yes/No,M,"An Error message will be displayed if data is not provided
-If Yes , then complete item 4.16 - Total disallowed amount
-Not required when Group subject to interest reactivation's = Yes"
-4.1,Group subject to interest reactivation's?,Yes/No,M,"If Yes , then complete item 4.11 - Interest reactivation cap 
-An Error message will be displayed if data is not provided
-Not required when Group subject to interest restrictions = Yes"
-4.7,Ways in which revised return differs from the return it supersedes,"UTF-String
-min 1 max 32767 chars - 
+An Error message will be returned if data is not provided"
+4.6,submissionType,Original/Revised,M,An Error message will be returned if data is not provided
+4.8,returnContainsEstimates,True/False,M,An Error message will be returned if data is not provided
+4.8A,groupEstimateReason ,"UTF-String
+min 1 max 10000 chars - 
+",M if 4.8 = true and 6.16A not populated,An Error message will be returned if data is not provided
+4.9,groupSubjectToInterestRestrictions,True/False,M,"An Error message will be returned if data is not provided
+If True, then complete item 4.16 - Total restrictions
+If True, ""interestReactivationCap"": 0 required"
+4.1,groupSubjectToInterestReactivation,True/False,M,"If True, then complete item 4.11 - Interest reactivation cap 
+An Error message will be returned if data is not provided
+Not required when Group subject to interest restrictions = True"
+4.7,revisedReturnDetails,"UTF-String
+min 1 max 5000 chars - 
 ",M,"Mandatory when return is revised
-An Error message will be displayed if data is not provided"
-4.11,Interest reactivation cap,"Numeric
-min 0, no-max",M,"Only required if item 4.10- Are you subject to interest reactivation = yes
-An Error message will be displayed if data is not provided"
-4.12,Interest allowance brought forward,"Numeric
-min 0, no-max",M,An Error message will be displayed if data is not provided
-4.13,Interest allowance for period,"Numeric
-min 0, no-max",M,An Error message will be displayed if data is not provided
-4.15,"Interest capacity for period
-Figure to calculate your limit to carry forward for future period...","Numeric
-min 0, no-max",M,An Error message will be displayed if data is not provided
-4.16,Total disallowed amount,"Numeric
+An Error message will be returned if data is not provided"
+4.11,interestReactivationCap,"Numeric
+min 0, no-max",M,"When ""groupSubjectToInterestReactivation"": false, ""interestReactivationCap"": 0 is required
+An Error message will be returned if data is not provided"
+4.12,interestAllowanceBroughtForward,"Numeric
+min 0, no-max",M,An Error message will be returned if data is not provided
+4.13,interestAllowanceForPeriod,"Numeric
+min 0, no-max",M,An Error message will be returned if data is not provided
+4.15,"interestCapacityForPeriod
+","Numeric
+min 0, no-max",M,An Error message will be returned if data is not provided
+4.16,totalRestrictions,"Numeric
 min 0, no-max",M,Only required if item 4.9 - Group subject to interest restrictions = YES
-5. Group level elections,,,,
-5.1,Group ratio election,Yes/No,M,"If Group ratio election is NO then the Fixed Ratio method will be used for the calculation of basic interest allowance
-If Group ratio election = Yes, then the following data items below must be completed: 
+5. Group level elections (groupLevelElections),,,,
+5.1,"(groupRatio)
+isElected",True/False,M,"If groupRatio isElected  = False then the Fixed Ratio method will be used for the calculation of basic interest allowance
+If groupRatio isElected  = True, then the following data items below must be completed: 
 Item 5.2- Qualifying net group-interest expense (QNGIE)
 Item 5.3 - Group-EBITDA
 Item 5.4 Group ratio percentage
-If Group ratio election =No, then 5.2, 5.3 & 5.4 are NOT Required. 
-An Error message will be displayed if Group ratio election is not provided"
-5.2,Qualifying net group-interest expense (QNGIE),"Numeric
-no-min, no-max",M if 5.1 = Yes,"Only required where a group ratio election = Yes
-An Error message will be displayed if data is not provided and 5.1 = Yes"
-5.3,"Group-EBITDA
-(Earnings Before Interest, Taxes, Depreciation and Amortisation)","Numeric
-no-min, no-max",M if 5.1 = Yes,"Only required where a group ratio election =Yes
-An Error message will be displayed if data is not provided and 5.1 = Yes
+Item 5.5 Group ratio (blended) election
+Item 5.8 Interest allowance adjusted net group-interest expense (ANGIE)
+If Group ratio election =No, then 5.2, 5.3 & 5.4,5.5 are NOT Required. 
+An Error message will be returned if groupRatio isElected is not provided"
+5.2,qngie,"Numeric
+min 0, no-max",M if 5.1 = Yes,"Qualifying net group-interest expense (QNGIE)
+Only required where groupRatio isElected  = True
+An Error message will be returned if data is not provided and 5.1 = True"
+5.3,groupEBITDA,"Numeric
+no-min, no-max",M if 5.1 = Yes,"Group-EBITDA
+(Earnings Before Interest, Taxes, Depreciation and Amortisation)
+Only required where a groupRatio isElected  = True
+An Error message will be returned if data is not provided and 5.1 = True
 Group-EBITDA can be a negative amount."
-5.4,Group ratio percentage,"Numeric %
+5.4,groupRatio,"Numeric %
 min 0%, max 100%
 5 decimal places.
-No rounding up or down of he figure",M if 5.1 = Yes,"Only required where a group ratio election = Yes
+No rounding up or down of the figure",M if 5.1 = Yes,"Only required where a groupRatio isElected  = True
+Cannot be a negative value
 The group ratio percentage is capped at 100%
 The ratio % will = 100% if the calculation gives a negative result 
 When EBITDA = zero, Group ratio will = 100% 
-An Error message will be displayed if data is not provided
- 
+When QNGIE = zero, Group ratio will = 0%
+An Error message will be returned if data is not provided
 Examples:
 QNGIE divided by EBITDA gives a negative value, then Group ratio = 100%?
 When EBITDA that is zero, the Group ratio is = 100%??
 QNGIE divided by EBITDA = 120%, then Group ratio = 100%"
-5.5,Group ratio (blended) election,Yes/No,M,"Required if item 5.1 - Group ratio election = Yes
-If Group ratio (blended) election = Yes, then one or more investor groups must be entered, (item 5.6  Over ruled by the business rule in 5.6 which states that an investor group is optional when Group ratio (blended) election = Yes
-An Error message will be displayed if Yes/NO is not selected"
-5.6,Investor group(s) to which election relates,"List [String]
+5.5,"(groupRatioBlended)
+isElected",True/False,M,"Required if item 5.1 - groupRatio isElected  = True
+An Error message will be returned if data is not provided"
+5.6,investorGroups,"List [String]
 For each investor group named, capture What elections have been made/not made
 Name : String, min 1 , max 160
-If the Investor group is using Group ratio election, then show the following list
-Group ratio (blended) election
-Group EBITDA (chargeable gains) election
-Interest allowance (alternative calculation) election
-Interest allowance (non-consolidated investment) election
-Interest allowance (consolidated partnership election
- 
-If the Investor group is using Fixed ratio election, then show the following list
-Group EBITDA (chargeable gains) election
-Interest allowance (alternative calculation) election
-Interest allowance (non-consolidated investment) election
-Interest allowance (consolidated partnership election",O,"ONLY available where a group ratio election is made.(item 5.1)
+for group ratio - 
+""groupRatioBlended"",
+""groupEBITDA"",
+""interestAllowanceAlternativeCalculation"",
+ ""interestAllowanceNonConsolidatedInvestment"",
+ ""interestAllowanceConsolidatedPartnership""
+for fixed ratio -
+""interestAllowanceAlternativeCalculation"",
+""interestAllowanceNonConsolidatedInvestment"",
+ ""interestAllowanceConsolidatedPartnership"",
+""groupEBITDA""",O,"ONLY available where a groupRatio isElected  = True.(item 5.1)
 The group CAN (not must) specify one or more investor groups, and treat this/these as having made or not made other elections"
-5.7 A,Has Group EBITDA (chargeable gains) election been previously elected?,Yes/No (True/False),M,"Relevant for both fixed ratio or group ratio methods. 
-An Error message will be displayed if data is not provided
-"
-5.7,"Group EBITDA (chargeable gains) election
-(Earnings Before Interest, Taxes, Depreciation and Amortisation)",Yes/No (True/False),O,Item irrevocable
+5.7 A,activeGroupEBITDAChargeableGains,True/False,M,"Relevant for both fixed ratio or group ratio methods. 
+An Error message will be returned if data is not provided"
+5.7,groupEBITDAChargeableGains,True/False,M,Item irrevocable
 Group + Fixed Ratio,,,,
-5.8,Interest allowance adjusted net group-interest expense (ANGIE) amount,"monetary value
+5.8,angie,"monetary value
 allow for over 1 billion £s
 allow for 2 decimal places
 no negative amounts allowed","M
-","ANGIE cannot be negative;
-if the result of the calculations is negative, ANGIE is = nil.
+","Interest allowance adjusted net group-interest expense (ANGIE) amount
+ANGIE cannot be negative;
 Required for both Group and Fixed Ratio calculations 
-An Error message will be displayed if data is not provided"
-5.9,Interest allowance (alternative calculation) election,Yes/No (True/False),M,"Relevant for both fixed ratio or group ratio methods. 
-An Error message will be displayed if data is not provided
+An Error message will be returned if data is not provided"
+5.9,interestAllowanceAlternativeCalculation,True/False,M,"Relevant for both fixed ratio or group ratio methods. 
+An Error message will be returned if data is not provided
 Item irrevocable (but we do not have access to previous returns to see if this has previously been elected)"
-5.9A,Interest allowance (alternative calculation) active,Yes/No (True/False),M,"Relevant for both fixed ratio or group ratio methods. 
-An Error message will be displayed if data is not provided
-"
-5.1,Interest allowance (non-consolidated investment) election,Yes/No (True/False),M,"Relevant for both the fixed ratio and the group ratio methods
+5.9A,activeInterestAllowanceAlternativeCalculation,True/False,M,"Relevant for both fixed ratio or group ratio methods. 
+An Error message will be returned if data is not provided"
+5.1,interestAllowanceNonConsolidatedInvesment,True/False,M,"Relevant for both the fixed ratio and the group ratio methods
+Relevent for both active and newly elected Non-Consolidated investments
 When Interest allowance (non-consolidated investment) election = Yes, then one or more non-consolidated associates of the worldwide group must be entered on the return. (see item 5.9)
 Can also elect item 5.7 - Interest allowance (consolidated partnerships) election 
-An Error message will be displayed if data is not provided"
-5.1A,Interest allowance (non-consolidated investment) active,Yes/No (True/False),M,"Relevant for both fixed ratio or group ratio methods. 
-An Error message will be displayed if data is not provided
-"
-5.11,Interest allowance (consolidated partnerships) election,Yes/No (True/False),M,"Relevant for both the fixed ratio and the group ratio methods.
+An Error message will be returned if data is not provided"
+5.11,"(interestAllowanceConsolidatedPartnership)
+isElected",True/False,M,"Relevant for both the fixed ratio and the group ratio methods.
  When Interest allowance (consolidated partnerships) election is elected, a Partnership or partnerships to which election relates to must be entered (item 5.14)
-An Error message will be displayed if data is not provided
-Item irrevocable (but we do not have access to previous returns to see if this has previously been elected)"
-5.11A,Interest allowance (consolidated partnerships) active,Yes/No (True/False),M,"Relevant for both fixed ratio or group ratio methods. 
-An Error message will be displayed if data is not provided
+An Error message will be returned if data is not provided
+Item irrevocable "
+5.11A,"(interestAllowanceConsolidatedPartnership)
+isActive",True/False,M,"Relevant for both fixed ratio or group ratio methods. 
+An Error message will be returned if data is not provided
 "
-5.12,Has a company made a qualifying infrastructure company election?,Yes/No (True/False),M,NOTE: Election lasts for 5 years
+5.12,qicElection,True/False,M,"Qualifying infrastructure company election
+NOTE: Election lasts for 5 years"
 Interest allowance (non-consolidated investment) election,,,,
-5.13,Non-consolidated investment(s) to which election relates,Names of investments ,M if item 5.6 =Yes,"MUST specify one or more non-consolidated associates of the worldwide group when Item 5.10 -Interest allowance (non-consolidated investment) election is made.
-Item irrevocable (but we do not have access to previous returns to see if this has previously been elected)
-An Error message will be displayed if data is not provided"
+5.13,nonConsolidatedInvestments," Investment name type, size min - 1, max -5000",M if item 5.6 =Yes,"MUST specify one or more non-consolidated associates of the worldwide group when Item 5.10 -Interest allowance (non-consolidated investment) election is made.
+Item irrevocable
+An Error message will be returned if data is not provided"
 Interest allowance (consolidated partnerships) election,,,,
-5.14,Partnership or partnerships to which election relates,"Names of each Partnership/s -
+5.14,consolidatedPartnerships,"Names of each Partnership/s -
 Name : String, min 1 , max 160
 List of
 min elements 1, max element 32767",M if item 5.7 =Yes,"Can be a UK Partnership or a Non UK Partnership
-MUST identify the consolidated partnership when item 5.11 - Interest allowance (consolidated partnerships) election is elected
+MUST identify the consolidated partnership when item 5.11 or 5.11A is true- Interest allowance (consolidated partnerships) active/election is true
 If UK Partnership - request an SA UTR - item 5.15
-An Error message will be displayed if data is not provided"
-5.15,UK Partnership SA UTR,"10 digits
-example 1234567890",M,
-6. About the companies involved - data for each UK company ,,,,
+An Error message will be returned if data is not provided"
+5.15,sautr,"10 digits
+min 10, max 10
+Use UTR Check Sum to validate the UTR",M,
+6. About the companies involved - data for each UK company (ukCompanies),,,,
 "A company is eligible if and only if the company:
 (a) was a UK group company at a time during the specified period of account,
 and (b) was not dormant throughout that period.",,,,
-6.1,UK Group Company Name,"String
+6.1,companyName,"String
 Alpha numeric - min 1 max 160 chars
-Validation to be same as that for Companies House",M,An Error message will be displayed if data is not provided
-6.2,UK Tax reference -CT unique taxpayer reference (UTR),"10 digit numerical
-(min 10 max 10 chars, use UTR Checksum below)",M,An Error message will be displayed if data is not provided
-6.3,Enter N if non-consenting,Consenting or Non-Consenting,M,An Error message will be displayed if data is not provided
-6.4,Net tax-interest expense,"Numeric (always positive)
+",M,An Error message will be returned if data is not provided
+6.2,utr,"10 digits
+min 10, max 10
+Use UTR Check Sum to validate the UTR",M,An Error message will be returned if data is not provided
+6.3,consenting,True/False,M,An Error message will be returned if data is not provided
+6.4,netTaxInterestExpense,"Numeric (always positive)
 min 0, no-max",M if 6.5 not required,"When a company has a value in Net tax-interest expense, then that company will have a value of zero in Net tax-interest income (item 6.5)
 If Net tax-interest expense is entered, then there cannot be Net tax-interest income
 If there is a Net tax interest expense, net interest income will be Zero (added 20/02/20)"
-6.5,Net tax-interest income,"Numeric (always positive)
+6.5,netTaxInterestIncome,"Numeric (always positive)
 min 0, no-max",M if 6.4 not required,"If there is a Net tax-interest income, then Net tax-interest expense will be zero
 Both Net tax-interest expense and Net tax-interest income, can both be zero"
-6.6,"Tax-EBITDA
-(Earnings Before Interest, Taxes, Depreciation and Amortisation)","Numeric
-no-min, no-max",M,"Can be a negative figure
-An Error message will be displayed if data is not provided"
-6.7,Aggregate net tax-interest expense; or,"Numeric
-Zero to no-max",M,"Derived value - from list of Net tax-interest expense values - Item 6.4
+6.6,"taxEBITDA
+","Numeric
+no-min, no-max",M,"(Earnings Before Interest, Taxes, Depreciation and Amortisation)
+Can be a negative figure
+An Error message will be returned if data is not provided"
+6.7,aggregateNetTaxInterest,"Numeric
+Zero to no-max",,"Derived value - from list of Net tax-interest income and expense values - Item 6.4, 6.5
 for UK companies only
-A negative sum is treated as zero
 The Aggregate Net tax-interest income amount cannot be greater than the aggregate net tax -interest expense when the group is subject to restrictions 
 If a group is subject to restrictions then a net tax expense must be added for that period. 
-The total disallowed amount cannot exceed the aggregate net tax-interest expense.
+The total restriction amount cannot exceed the aggregate net tax-interest expense.
  
-If Total Net tax-interest expense= 190, Net tax-interest income = 120, then there will be an Aggregate net tax-interest expense = 70"
-6.8,Aggregate net tax-interest income (for UK companies only),"Numeric
-Zero to no-max",M,"Derived value - from list of Net tax-interest income values - item 6.5
-for UK companies only
-A negative sum is treated as zero
-If an Aggregate net tax-interest income is entered, then there cannot be an Aggregate net tax-interest expense value. (Aggregate net tax interest is a single field. Positive value = income, Negative value = expense)
-Aggregate net tax-interest income must not exceed the Interest reactivation cap
- 
-If Total Net tax-interest expense= 150, Net tax-interest income = 200, then there will be an Aggregate net tax-interest income = 50"
-6.9,"Aggregate tax-EBITDA
+If Total Net tax-interest expense= 190, Net tax-interest income = 120, then there will be an Aggregate net tax-interest expense = 70
+"
+6.9,"aggregateTaxEBITDA
+","Numeric
+Zero to no-max",," Derived value - from list of Tax-EBITDA - item 6.6
  (for UK companies only)
- 
-Earnings Before Interest, Taxes, Depreciation and Amortisation (EBITDA)","Numeric
-Zero to no-max",M,"o   
-Derived value - from list of Tax-EBITDA - item 6.6
+Earnings Before Interest, Taxes, Depreciation and Amortisation (EBITDA)
 Cannot be negative amount
 Positive and negative amounts can be aggregated, but a negative total is treated as aggregate tax-EBITDA of zero.
-An Error message will be displayed if data is not provided"
-Allocated restrictions -  for all UK group companies - Only required if item 4.9 - Group subject to interest restrictions = Yes,,,,
-"Rules
-A restriction can only be allocated to a company that has a 'Net tax-interest expense' (Item 6.4) 
-When a company has overlapping accounting periods to that of the Group accounting period, and the group had reported that the Group had Restrictions, the company would be able to apportion their restriction over the company accounting periods 1 to 3
- When there are multiple AP's and one of the AP's has NO restriction for that AP, a zero will be entered 
-The allocated restriction for the company must not exceed the amount of net tax-interest expense that the company has. 
-A disallowance is optional for an Accounting Period but a disallowance amount of greater than 0 must be entered for at least one of the Accounting Periods adde",,,,
-6.1,For each company AP1 ends,Date: ISO 8601: YYYY-MM-DD,M,End date has to be after the group wide IRR start date
-,,Disallowance relevant to AP1,,
-6.11,For each company AP2 ends,date: ISO 8601 : YYYY-MM-DD,0,"Required when the company Accounting Periods overlaps the group Accounting period
+An Error message will be returned if data is not provided"
+6.1,"ap1EndDate
+",Date: ISO 8601: YYYY-MM-DD,M,End date has to be after the group wide IRR start date. If any apEndDate is after End date of worldwide group of account (item 4.5)  then additional apEndDates are not allowed 
+,disallowanceAp1,Disallowance relevant to AP1,,
+6.11,ap2EndDate,date: ISO 8601 : YYYY-MM-DD,O,"Required when the company Accounting Periods overlaps the group Accounting period
 End Date for AP2 Must be greater than AP1 ends
 End date cannot be greater than 12 months after the end date of AP1 - added 19/03/20"
-,,Disallowance relevant to AP2,,
-6.12,For each company AP3 ends,date: ISO 8601: YYYY-MM-DD,0,"Required when the company Accounting Periods overlaps the the group Accounting period
+,disallowanceAp2,Disallowance relevant to AP2,,
+6.12,ap3EndDate,date: ISO 8601: YYYY-MM-DD,O,"Required when the company Accounting Periods overlaps the the group Accounting period
 End Date for AP3 Must be greater than AP2 ends
 End date cannot be greater than 12 months after the end date of AP2 - added 19/03/20
 If AP2 end date is outside of Group POA , then AP3 will not be allowed"
-,,Disallowance relevant to AP3,,
-6.13,"Total of allocated restrictions
+,disallowanceAp3,Disallowance relevant to AP3,,
+6.13,"totalDisallowances
 (Disallowance for each AP above)","Numeric
-min 0, no-max",M,"Derived value
-(Disallowance for each company AP1 + Disallowance for each company AP2 + Disallowance for each company AP3 = Total of allocated restrictions)
-The aggregated restrictions amount must equal the Total disallowed amount (item 4.16)
+min 0, no-max",,"Derived Value.
+disallowanceAp1 + disallowance Ap2 + disallowanceAp3 = Total of allocated restrictions
+The aggregated restrictions amount must equal the Total restrictions (item 4.16)
 The total of Allocated restriction for a company can't be more than that companies net tax interest expense.
 A restriction cannot be allocated to a company if that company does not have a Net tax-interest expense"
 Allocated reactivation's Only required if item 4.10 - Group subject to interest reactivation's = Yes,,,,
 ,,,,
-6.14,Reactivation - for period of account.,"Numeric
-min 0, no-max",,"Required if item 4.10- Group subject to interest reactivation's? is = Yes
-The allocated reactivation for a company can't be more than that companies net tax interest income. - Confirmed that this has been incorrectly implemented 18/02/21
+6.14,currentPeriodReactivation,"Numeric
+min 0, no-max",O,"The allocated reactivation for a company can't be more than that companies net tax interest income. - Confirmed that this has been incorrectly implemented 18/02/21
 A company can have a net tax - interest expense and a reactivation"
-6.15,Total reactivation,"Numeric (always positive)
-min 0, no-max",M,"Derived value: (Total value of all company reactivation amounts entered for each company in item 6.14
+6.15,totalReactivation,"Numeric (always positive)
+min 0, no-max",,"Derived value: (Total value of all company reactivation amounts entered for each company in item 6.14
 The Total reactivation amount cannot exceed the the Interest reactivation Cap (Item 4.11)"
-7.1,Declaration,Yes/No (True/False),M,If return does not meet declaration criteria then it is deemed invalid
+6.16A,companyEstimateReason ,"UTF-String
+min 1 max 10000 chars - 
+",M if 4.8 = true and 4.8A not populated,An Error message will be returned if data is not provided
+7.1,declaration,True/False,M,If return does not meet declaration criteria then the return is deemed invalid

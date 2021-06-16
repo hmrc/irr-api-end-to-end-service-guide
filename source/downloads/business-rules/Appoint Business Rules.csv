@@ -1,69 +1,71 @@
-ID,Data Items,Data validation,Mandatory(M)/Optional (O),Business rules
+ID,Data Item,Data validation,Mandatory (M)/Optional(O),Business Rules
 1.  Who are you,,,,
-1.1,Are you an agent acting on behalf of the company making the appointment?,True/False,M,
-1.2,Name of agent  Name of firm,"String
-min 1 , max 160",M ,Mandatory if 1.1 = True
-2. About the Reporting Company,,,,
-2.1,Reporting company name,"String
-Companies House Character Validation
-min 1 max 160 chars",M,An Error message will be displayed if data is not provided
-2.2,UK Tax reference - CT UTR,"10 digits
+1.1,appointedReportingCompany,True/False,M,"If answer = False, then an error message will be returned advising a reporting company needs to be appointed before being able to continue with the return"
+1.2,agentActingOnBehalfOfCompany,True/False,M,An Error message will be returned if data is not provided
+2. About the Reporting Company (reportingCompany),,,,
+2.1,companyName,"String
+min 1 max 160 chars",M,An Error message will be returned if data is not provided
+2.2,ctutr,"10 digits
 min 10, max 10
-Use UTR Check Sum to validate the UTR",M,"The CT UTR must be validated using UTR Check Sum detailed below this table.
-Where the UTR Check sum gives an error, then an error message will be displayed and must be corrected before the submission is allowed. 
-An Error message will be displayed if data is not provided
-An error message will be displayed if the UTR Checksum gives an error"
-2.4,Is the reporting company (or their authorised agent) submitting this appointment form?,True/False,M,"If answer=No, then details to identify the company making the appointment must be completed:
+Use UTR Check Sum to validate the UTR",M,An Error message will be returned if data is not provided
+2.4,isReportingCompanyAppointingItself,True/False,M,"If answer = False, then capture Identity of company making appointment section details 
 ·   
 item 3.1 - Company name of the company making the appointment
 item 3.2 - UK Tax reference - unique taxpayer reference (UTR)
 "
-3. Identity of company making appointment - Required if the Reporting Company or Agent is NOT completing the appointment details,,,,
+3. Identity of company making appointment - Required if the Reporting Company or Agent is NOT completing the appointment details (identityOfAppointingCompany),,,,
 UK tax presence,,,,
-3.1,Company name of the company making appointment,"String (min 1 ,max 160)",M,"If UK company, complete the following items,
+3.1,companyName,"String (min 1 ,max 160)",M,"If UK company, complete the following items,
 item 6C - UK Tax reference - CT UTR
 "
-3.2,UK Tax reference - CT UTR,"10 digit numerical
-min 10 max 10 chars,
-Use UTR Checksum  to validate the UR is correct",M,"If present confirm UTR using UTR Check Sum detailed below
+3.2,ctutr,"10 digits
+min 10, max 10
+Use UTR Check Sum to validate the UTR",M,"If present confirm UTR using UTR Check Sum detailed below
 If CT UTR is present, then 'Country of incorporation' cannot be present
-An error message will be displayed if the UTR Checksum gives an error"
+An error message will be returned if the UTR Checksum gives an error"
 Non- UK tax presence,,,,
-3.4,"Country of incorporation
-(Jurisdiction of incorporation)","2 chars
+3.4,countryofIncorporation,"2 chars
 Stored as  ISO 3166-1 alpha-2 format
-(display country name to user)",M,"If 'Country of incorporation' is present, then 'CT UTR' cannot be present"
-3.9,Legal Entity Identifier,"20-character, alpha-numeric",O,LEI is an alpha numerical field that is 20 characters in length
-4. Ultimate Parent Company's details,,,,
+",M,"If 'Country of incorporation' is present, then 'CT UTR' cannot be present"
+3.9,legalEntityIdentifier,"20-character, alpha-numeric",O,LEI is an alpha numerical field that contains 18 uppercase letters followed by 2 numbers 
+4. Ultimate Parent Company's details (ultimateParentCompany),,,,
 UK Tax Presence,,,,
-4.1,Ultimate parent company name,"String, min 1 , max 160",M,
-4.2,Tax reference - unique taxpayer reference (CT UTR),"10 digit numerical
-min 10 max 10 chars,
-Use UTR Checksum to validate the UR is correct",M,"M if Ultimate Parent is UK
-An error message will be displayed if the UTR Checksum gives an error"
+4.1,companyName,"String, min 1 , max 160",M,An Error message will be returned if an Ultimate Parent Company name is not provided
+4.2,ctutr,"10 digits
+min 10, max 10
+Use UTR Check Sum to validate the UTR",M,"M if Ultimate Parent is UK
+An error message will be returned if the UTR Checksum gives an error"
 NON-UK,,,,
-4.3,"Country of incorporation
-(Jurisdiction of incorporation)","2 chars
+4.3,countryofIncorporation,"2 chars
 Stored as  ISO 3166-1 alpha-2 format
-(display country name to user)",M,M if Ultimate Parent is Non-UK
-4.5,Legal Entity Identifier,"20-character, alpha-numeric",O,LEI is an alpha numerical field that is 20 characters in length
-5. Period of account,,,,
-5.1,Start date of worldwide group period of account,yyyy/mm/dd,M,"Cannot be a future date
-No validation required for how far in the past the Start date entered can be
+",M,M if Ultimate Parent is Non-UK
+4.5,legalEntityIdentifier,"20-character, alpha-numeric",O,LEI is an alpha numerical field that contains 18 uppercase letters followed by 2 numbers 
+5. Period of account (accountingPeriod),,,,
+5.1,"(accountingPeriod)
+startDate","standard GDS date format
+dd/mm/yyyy
+",M,"
+
 Back-end date to be stored as : ISO 8601 YYYY-MM-DD
-An Error message will be displayed if data is not provided"
-5.2,End date of worldwide group period of account,yyyy/mm/dd,M,"The end date must be a min of 1 day and a max of 18 months after the start date
-Error will be displayed if the end date is more than 18 months after the start date .
+An Error message will be returned if data is not provided
+Start date must be on or after 2016-10-01
+Start date cannot be in the future"
+5.2,"(accountingPeriod)
+endDate","standard GDS date format
+dd/mm/yyyy
+",M,"The end date must be a min of 1 day and a max of 18 months after the start date
+Error will be returned if the end date is more than 18 months after the start date .
 Back-end date to be stored as : ISO 8601 YYYY-MM-DD
-An Error message will be displayed if data is not provided"
-6. Eligible companies who have authorised the notice,,,,
-6.1,Company name,"String
-Alpha numeric - min 1 max 160 chars
-Validation to be same as that for Companies House",M,"At least 1 company must be entered
-An Error message will be displayed if data is not provided"
-6.2,UK Tax reference - unique taxpayer reference (UTR),"10 digit numerical
-min 10 max 10 chars,
-Use UTR Checksum to validate the UR is correct",M,"An Error message will be displayed if data is not provided
-An error message will be displayed if the UTR Checksum gives an error"
+An Error message will be returned if data is not provided
+End date must be the same as or after 2017-04-01"
+6. Eligible companies who have authorised the notice (authorisingCompanies),,,,
+6.1,companyName,"String
+Alpha numeric - min 1 max 160 chars",M,"At least 1 company must be entered
+An Error message will be returned if data is not provided
+Authorising companies can't have duplicate information"
+6.2,utr,"10 digits
+min 10, max 10
+Use UTR Check Sum to validate the UTR",M,"An Error message will be returned if data is not provided
+An error message will be returned if the UTR Checksum gives an error"
 7. Declaration,,,,
-7.1,Declaration,True/False,M,If return does not meet declaration criteria then it is deemed invalid
+7.1,declaration,True/False,M,If return does not meet declaration criteria then the return is deemed invalid
