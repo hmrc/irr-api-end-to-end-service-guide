@@ -1,6 +1,6 @@
 ID,Data Item,Data validation,Mandatory (M)/Optional(O),Business Rules
 1.  Start a return,,,,
-1.1,appointedReportingCompany,True/False,M,"If answer = True, then an error message will be returned advising a reporting company needs to be appointed before being able to continue with the return"
+1.1,appointedReportingCompany,True/False,M,"If answer = False, then an error message will be returned advising a reporting company needs to be appointed before being able to continue with the return"
 1.2,agentActingOnBehalfOfCompany,True/False,M,An Error message will be returned if data is not provided
 1.3,agentName,"String
 min 1 , max 160",M if 1.2 = true,"Must be completed if item 1.2 - Agent acting on behalf of company is = True
@@ -89,8 +89,7 @@ An Error message will be returned if data is not provided"
 min 0, no-max",M,An Error message will be returned if data is not provided
 4.13,interestAllowanceForPeriod,"Numeric
 min 0, no-max",M,An Error message will be returned if data is not provided
-4.15,"interestCapacityForPeriod
-","Numeric
+4.15,interestCapacityForPeriod,"Numeric
 min 0, no-max",M,An Error message will be returned if data is not provided
 4.16,totalRestrictions,"Numeric
 min 0, no-max",M,Only required if item 4.9 - Group subject to interest restrictions = YES
@@ -164,7 +163,7 @@ An Error message will be returned if data is not provided
 Item irrevocable (but we do not have access to previous returns to see if this has previously been elected)"
 5.9A,activeInterestAllowanceAlternativeCalculation,True/False,M,"Relevant for both fixed ratio or group ratio methods. 
 An Error message will be returned if data is not provided"
-5.1,interestAllowanceNonConsolidatedInvesment,True/False,M,"Relevant for both the fixed ratio and the group ratio methods
+5.10,interestAllowanceNonConsolidatedInvesment,True/False,M,"Relevant for both the fixed ratio and the group ratio methods
 Relevent for both active and newly elected Non-Consolidated investments
 When Interest allowance (non-consolidated investment) election = Yes, then one or more non-consolidated associates of the worldwide group must be entered on the return. (see item 5.9)
 Can also elect item 5.7 - Interest allowance (consolidated partnerships) election 
@@ -181,14 +180,14 @@ An Error message will be returned if data is not provided
 5.12,qicElection,True/False,M,"Qualifying infrastructure company election
 NOTE: Election lasts for 5 years"
 Interest allowance (non-consolidated investment) election,,,,
-5.13,nonConsolidatedInvestments," Investment name type, size min - 1, max -5000",M if item 5.6 =Yes,"MUST specify one or more non-consolidated associates of the worldwide group when Item 5.10 -Interest allowance (non-consolidated investment) election is made.
+5.13,nonConsolidatedInvestments," Investment name type, size min - 1, max -5000",M if item 5.10 =True,"MUST specify one or more non-consolidated associates of the worldwide group when Item 5.10 -Interest allowance (non-consolidated investment) election is made.
 Item irrevocable
 An Error message will be returned if data is not provided"
 Interest allowance (consolidated partnerships) election,,,,
 5.14,consolidatedPartnerships,"Names of each Partnership/s -
 Name : String, min 1 , max 160
 List of
-min elements 1, max element 32767",M if item 5.7 =Yes,"Can be a UK Partnership or a Non UK Partnership
+min elements 1, max element 32767",M if item 5.11 and/or 5.11A =True,"Can be a UK Partnership or a Non UK Partnership
 MUST identify the consolidated partnership when item 5.11 or 5.11A is true- Interest allowance (consolidated partnerships) active/election is true
 If UK Partnership - request an SA UTR - item 5.15
 An Error message will be returned if data is not provided"

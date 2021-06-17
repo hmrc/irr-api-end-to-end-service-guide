@@ -67,14 +67,8 @@ min 1 max 5000 chars -
 An Error message will be returned if data is not provided"
 5. Group level elections (groupLevelElections),,,,
 5.1,"(groupRatio)
-isElected",True/False,M,"If groupRatio isElected  = False then the Fixed Ratio method will be used for the calculation of basic interest allowance
-If groupRatio isElected  = True, then the following data items below must be completed: 
-Item 5.2- Qualifying net group-interest expense (QNGIE)
-Item 5.3 - Group-EBITDA
-Item 5.4 Group ratio percentage
-Item 5.5 Group ratio (blended) election
-If groupRatio isElected  = False, then 5.2, 5.3 & 5.4,5.5 are NOT Required. 
-An Error message will be returned if Group ratio election is not provided"
+isElected",True/False,M,"If groupRatio isElected  = False, then item 5.5 not required
+If groupRatio isElected  = True, then item 5.5 required"
 5.5,"(groupRatioBlended)
 isElected",True/False,M,"Required if item 5.1 - groupRatio isElected  = True
 An Error message will be returned if data is not provided"
@@ -91,7 +85,7 @@ for fixed ratio -
 ""interestAllowanceAlternativeCalculation"",
 ""interestAllowanceNonConsolidatedInvestment"",
  ""interestAllowanceConsolidatedPartnership"",
-""groupEBITDA""",O,"ONLY available where a group ratio election is made.(item 5.1)
+""groupEBITDA""",O,"ONLY available where a group ratio election is made.(item 5.1) and item 5.5 = True
 The group CAN (not must) specify one or more investor groups, and treat this/these as having made or not made other elections"
 5.7 A,activeGroupEBITDAChargeableGains,True/False,M,"Relevant for both fixed ratio or group ratio methods. 
 An Error message will be returned if data is not provided
@@ -104,7 +98,7 @@ Item irrevocable (but we do not have access to previous returns to see if this h
 5.9A,activeInterestAllowanceAlternativeCalculation,True/False,M,"Relevant for both fixed ratio or group ratio methods. 
 An Error message will be returned if data is not provided
 "
-5.1,interestAllowanceNonConsolidatedInvesment,True/False,M,"Relevant for both the fixed ratio and the group ratio methods
+5.10,interestAllowanceNonConsolidatedInvesment,True/False,M,"Relevant for both the fixed ratio and the group ratio methods
 Relevent for both active and newly elected Non-Consolidated investments
 When Interest allowance (non-consolidated investment) election = True, then one or more non-consolidated associates of the worldwide group must be entered on the return. (see item 5.9)
 Can also elect item 5.7 - Interest allowance (consolidated partnerships) election 
@@ -121,14 +115,14 @@ An Error message will be returned if data is not provided
 5.12,qicElection,True/False,M,"Qualifying infrastructure company election
 NOTE: Election lasts for 5 years"
 Interest allowance (non-consolidated investment) election,,,,
-5.13,nonConsolidatedInvestments," Investment name type, size min 1, max 5000",M if item 5.6 =Yes,"MUST specify one or more non-consolidated associates of the worldwide group when Item 5.10 -Interest allowance (non-consolidated investment) election is made.
+5.13,nonConsolidatedInvestments," Investment name type, size min 1, max 5000",M if item 5.10 =True,"MUST specify one or more non-consolidated associates of the worldwide group when Item 5.10 -Interest allowance (non-consolidated investment) election is made.
 Item irrevocable
 An Error message will be returned if data is not provided"
 Interest allowance (consolidated partnerships) election,,,,
 5.14,consolidatedPartnerships,"Names of each Partnership/s -
 Name : String, min 1 , max 160
 List of
-min elements 1, max element 32767",M if item 5.7 =Yes,"Can be a UK Partnership or a Non UK Partnership
+min elements 1, max element 32767",M if item 5.11 and/or 5.11A =True,"Can be a UK Partnership or a Non UK Partnership
 MUST identify the consolidated partnership when item 5.11 or 5.11A is true- Interest allowance (consolidated partnerships) active/election is true
 If UK Partnership - request an SA UTR - item 5.15
 An Error message will be returned if data is not provided"
