@@ -1,6 +1,6 @@
 ID,Data Item,Data validation,Mandatory (M)/Optional(O),Business Rules
 1.  Who are you,,,,
-1.1,appointedReportingCompany,True/False,M,"If answer = False, then an error message will be returned advising a reporting company needs to be appointed before being able to continue with the return"
+1.1,appointedReportingCompany,True/False,M,"If answer = False, then an error message will be returned advising that a reporting company needs to be appointed before being able to continue with the return"
 1.2,agentActingOnBehalfOfCompany,True/False,M,An Error message will be returned if data is not provided
 2. About the Reporting Company (reportingCompany),,,,
 2.1,companyName,"String
@@ -11,13 +11,11 @@ Use UTR Check Sum to validate the UTR",M,An Error message will be returned if da
 2.4,isReportingCompanyAppointingItself,True/False,M,"If answer = False, then capture Identity of company making appointment section details 
 ·   
 item 3.1 - Company name of the company making the appointment
-item 3.2 - UK Tax reference - unique taxpayer reference (UTR)
-"
+item 3.2 - UK Tax reference - unique taxpayer reference (UTR)"
 3. Identity of company making appointment - Required if the Reporting Company or Agent is NOT completing the appointment details (identityOfAppointingCompany),,,,
 UK tax presence,,,,
 3.1,companyName,"String (min 1 ,max 160)",M,"If UK company, complete the following items,
-item 6C - UK Tax reference - CT UTR
-"
+item 6C - UK Tax reference - CT UTR"
 3.2,ctutr,"10 digits
 min 10, max 10
 Use UTR Check Sum to validate the UTR",M,"If present confirm UTR using UTR Check Sum detailed below
@@ -25,9 +23,8 @@ If CT UTR is present, then 'Country of incorporation' cannot be present
 An error message will be returned if the UTR Checksum gives an error"
 Non- UK tax presence,,,,
 3.4,countryofIncorporation,"2 chars
-Stored as  ISO 3166-1 alpha-2 format
-",M,"If 'Country of incorporation' is present, then 'CT UTR' cannot be present"
-3.9,legalEntityIdentifier,"20-character, alpha-numeric",O,LEI is an alpha numerical field that contains 18 uppercase letters followed by 2 numbers 
+Stored as  ISO 3166-1 alpha-2 format",M,"If 'Country of incorporation' is present, then 'CT UTR' cannot be present"
+3.9,legalEntityIdentifier,"20-character, alpha-numeric",O,LEI is an alpha numerical field that contains 18 uppercase letters followed by 2 numbers
 4. Ultimate Parent Company's details (ultimateParentCompany),,,,
 UK Tax Presence,,,,
 4.1,companyName,"String, min 1 , max 160",M,An Error message will be returned if an Ultimate Parent Company name is not provided
@@ -37,16 +34,13 @@ Use UTR Check Sum to validate the UTR",M,"M if Ultimate Parent is UK
 An error message will be returned if the UTR Checksum gives an error"
 NON-UK,,,,
 4.3,countryofIncorporation,"2 chars
-Stored as  ISO 3166-1 alpha-2 format
-",M,M if Ultimate Parent is Non-UK
-4.5,legalEntityIdentifier,"20-character, alpha-numeric",O,LEI is an alpha numerical field that contains 18 uppercase letters followed by 2 numbers 
+Stored as  ISO 3166-1 alpha-2 format",M,M if Ultimate Parent is Non-UK
+4.5,legalEntityIdentifier,"20-character, alpha-numeric",O,LEI is an alpha numerical field that contains 18 uppercase letters followed by 2 numbers
 5. Period of account (accountingPeriod),,,,
 5.1,"(accountingPeriod)
 startDate","standard GDS date format
 dd/mm/yyyy
-",M,"
-
-Back-end date to be stored as : ISO 8601 YYYY-MM-DD
+",M,"Back-end date to be stored as : ISO 8601 YYYY-MM-DD
 An Error message will be returned if data is not provided
 Start date must be on or after 2016-10-01
 Start date cannot be in the future"
