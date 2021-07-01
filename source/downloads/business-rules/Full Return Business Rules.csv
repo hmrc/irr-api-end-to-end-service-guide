@@ -1,6 +1,6 @@
 ID,Data Item,Data validation,Mandatory (M)/Optional(O),Business Rules
 1.  Start a return,,,,
-1.1,appointedReportingCompany,True/False,M,"If answer = False, then an error message will be returned advising a reporting company needs to be appointed before being able to continue with the return"
+1.1,appointedReportingCompany,True/False,M,"If answer = False, then an error message will be returned advising that a reporting company needs to be appointed before being able to continue with the return"
 1.2,agentActingOnBehalfOfCompany,True/False,M,An Error message will be returned if data is not provided
 1.3,agentName,"String
 min 1 , max 160",M if 1.2 = true,"Must be completed if item 1.2 - Agent acting on behalf of company is = True
@@ -49,7 +49,7 @@ min 1 , max 160",M,An Error message will be returned if data is not provided
 3.8,"(Ultimate or Deemed Parent)
 countryofIncorporation","2 chars
 Stored as  ISO 3166-1 alpha-2 format",M,"If 'Country of incorporation' is present, then 'CT UTR'cannot be present"
-3.9,legalEntityIdentifier,"20-character, alpha-numeric",O,LEI is an alpha numerical field that contains 18 uppercase letters followed by 2 numbers 
+3.9,legalEntityIdentifier,"20-character, alpha-numeric",O,LEI is an alpha numerical field that contains 18 uppercase letters followed by 2 numbers
 4. Group level information (groupCompanyDetails),,,,
 4.2,numberOfUkCompanies,,,"Derived figure from the number of companies listed in section - List all UK Group companies
 (When the 'List all UK Group companies' has been completed, then the calculated number of entries in the list will be populated in this data item)"
@@ -70,8 +70,7 @@ An Error message will be returned if data is not provided"
 4.6,submissionType,Original/Revised,M,An Error message will be returned if data is not provided
 4.8,returnContainsEstimates,True/False,M,An Error message will be returned if data is not provided
 4.8A,groupEstimateReason ,"UTF-String
-min 1 max 10000 chars - 
-",M if 4.8 = true and 6.16A not populated,An Error message will be returned if data is not provided
+min 1 max 10000 chars -",M if 4.8 = true and 6.16A not populated,An Error message will be returned if data is not provided
 4.9,groupSubjectToInterestRestrictions,True/False,M,"An Error message will be returned if data is not provided
 If True, then complete item 4.16 - Total restrictions
 If True, ""interestReactivationCap"": 0 required"
@@ -79,8 +78,7 @@ If True, ""interestReactivationCap"": 0 required"
 An Error message will be returned if data is not provided
 Not required when Group subject to interest restrictions = True"
 4.7,revisedReturnDetails,"UTF-String
-min 1 max 5000 chars - 
-",M,"Mandatory when return is revised
+min 1 max 5000 chars -",M,"Mandatory when return is revised
 An Error message will be returned if data is not provided"
 4.11,interestReactivationCap,"Numeric
 min 0, no-max",M,"When ""groupSubjectToInterestReactivation"": false, ""interestReactivationCap"": 0 is required
@@ -156,7 +154,7 @@ allow for 2 decimal places
 no negative amounts allowed","M
 ","Interest allowance adjusted net group-interest expense (ANGIE) amount
 ANGIE cannot be negative;
-Required for both Group and Fixed Ratio calculations 
+Required for both Group Ratio and Fixed Ratio calculations 
 An Error message will be returned if data is not provided"
 5.9,interestAllowanceAlternativeCalculation,True/False,M,"Relevant for both fixed ratio or group ratio methods. 
 An Error message will be returned if data is not provided
@@ -172,7 +170,7 @@ An Error message will be returned if data is not provided"
 isElected",True/False,M,"Relevant for both the fixed ratio and the group ratio methods.
  When Interest allowance (consolidated partnerships) election is elected, a Partnership or partnerships to which election relates to must be entered (item 5.14)
 An Error message will be returned if data is not provided
-Item irrevocable "
+Item irrevocable"
 5.11A,"(interestAllowanceConsolidatedPartnership)
 isActive",True/False,M,"Relevant for both fixed ratio or group ratio methods. 
 An Error message will be returned if data is not provided
@@ -180,7 +178,7 @@ An Error message will be returned if data is not provided
 5.12,qicElection,True/False,M,"Qualifying infrastructure company election
 NOTE: Election lasts for 5 years"
 Interest allowance (non-consolidated investment) election,,,,
-5.13,nonConsolidatedInvestments," Investment name type, size min - 1, max -5000",M if item 5.10 =True,"MUST specify one or more non-consolidated associates of the worldwide group when Item 5.10 -Interest allowance (non-consolidated investment) election is made.
+5.13,nonConsolidatedInvestments,"Investment name type, size min - 1, max -5000",M if item 5.10 =True,"MUST specify one or more non-consolidated associates of the worldwide group when Item 5.10 -Interest allowance (non-consolidated investment) election is made.
 Item irrevocable
 An Error message will be returned if data is not provided"
 Interest allowance (consolidated partnerships) election,,,,
@@ -199,16 +197,14 @@ Use UTR Check Sum to validate the UTR",M,
 (a) was a UK group company at a time during the specified period of account,
 and (b) was not dormant throughout that period.",,,,
 6.1,companyName,"String
-Alpha numeric - min 1 max 160 chars
-",M,An Error message will be returned if data is not provided
+Alpha numeric - min 1 max 160 chars",M,An Error message will be returned if data is not provided
 6.2,utr,"10 digits
 min 10, max 10
 Use UTR Check Sum to validate the UTR",M,An Error message will be returned if data is not provided
 6.3,consenting,True/False,M,An Error message will be returned if data is not provided
 6.4,netTaxInterestExpense,"Numeric (always positive)
 min 0, no-max",M if 6.5 not required,"When a company has a value in Net tax-interest expense, then that company will have a value of zero in Net tax-interest income (item 6.5)
-If Net tax-interest expense is entered, then there cannot be Net tax-interest income
-If there is a Net tax interest expense, net interest income will be Zero (added 20/02/20)"
+If Net tax-interest expense is entered, then there cannot be Net tax-interest income"
 6.5,netTaxInterestIncome,"Numeric (always positive)
 min 0, no-max",M if 6.4 not required,"If there is a Net tax-interest income, then Net tax-interest expense will be zero
 Both Net tax-interest expense and Net tax-interest income, can both be zero"
@@ -220,30 +216,27 @@ An Error message will be returned if data is not provided"
 6.7,aggregateNetTaxInterest,"Numeric
 Zero to no-max",,"Derived value - from list of Net tax-interest income and expense values - Item 6.4, 6.5
 for UK companies only
-The Aggregate Net tax-interest income amount cannot be greater than the aggregate net tax -interest expense when the group is subject to restrictions 
-If a group is subject to restrictions then a net tax expense must be added for that period. 
+The Aggregate Net tax-interest income amount cannot be greater than the aggregate net tax -interest expense when the group is subject to restrictions
 The total restriction amount cannot exceed the aggregate net tax-interest expense.
  
-If Total Net tax-interest expense= 190, Net tax-interest income = 120, then there will be an Aggregate net tax-interest expense = 70
-"
+If Total Net tax-interest expense= 190, Net tax-interest income = 120, then there will be an Aggregate net tax-interest expense = 70"
 6.9,"aggregateTaxEBITDA
 ","Numeric
-Zero to no-max",," Derived value - from list of Tax-EBITDA - item 6.6
+Zero to no-max",,"Derived value - from list of Tax-EBITDA - item 6.6
  (for UK companies only)
 Earnings Before Interest, Taxes, Depreciation and Amortisation (EBITDA)
 Cannot be negative amount
 Positive and negative amounts can be aggregated, but a negative total is treated as aggregate tax-EBITDA of zero.
 An Error message will be returned if data is not provided"
-6.1,"ap1EndDate
-",Date: ISO 8601: YYYY-MM-DD,M,End date has to be after the group wide IRR start date. If any apEndDate is after End date of worldwide group of account (item 4.5)  then additional apEndDates are not allowed 
+6.1,ap1EndDate,Date: ISO 8601: YYYY-MM-DD,M,End date has to be after the group wide IRR start date. If any apEndDate is after End date of worldwide group of account (item 4.5)  then additional apEndDates are not allowed
 ,disallowanceAp1,Disallowance relevant to AP1,,
 6.11,ap2EndDate,date: ISO 8601 : YYYY-MM-DD,O,"Required when the company Accounting Periods overlaps the group Accounting period
 End Date for AP2 Must be greater than AP1 ends
-End date cannot be greater than 12 months after the end date of AP1 - added 19/03/20"
+End date cannot be greater than 12 months after the end date of AP1"
 ,disallowanceAp2,Disallowance relevant to AP2,,
 6.12,ap3EndDate,date: ISO 8601: YYYY-MM-DD,O,"Required when the company Accounting Periods overlaps the the group Accounting period
 End Date for AP3 Must be greater than AP2 ends
-End date cannot be greater than 12 months after the end date of AP2 - added 19/03/20
+End date cannot be greater than 12 months after the end date of AP2
 If AP2 end date is outside of Group POA , then AP3 will not be allowed"
 ,disallowanceAp3,Disallowance relevant to AP3,,
 6.13,"totalDisallowances
@@ -256,12 +249,10 @@ A restriction cannot be allocated to a company if that company does not have a N
 Allocated reactivation's Only required if item 4.10 - Group subject to interest reactivation's = Yes,,,,
 ,,,,
 6.14,currentPeriodReactivation,"Numeric
-min 0, no-max",O,"The allocated reactivation for a company can't be more than that companies net tax interest income. - Confirmed that this has been incorrectly implemented 18/02/21
-A company can have a net tax - interest expense and a reactivation"
+min 0, no-max",O,A company can have a net tax - interest expense and a reactivation
 6.15,totalReactivation,"Numeric (always positive)
 min 0, no-max",,"Derived value: (Total value of all company reactivation amounts entered for each company in item 6.14
 The Total reactivation amount cannot exceed the the Interest reactivation Cap (Item 4.11)"
 6.16A,companyEstimateReason ,"UTF-String
-min 1 max 10000 chars - 
-",M if 4.8 = true and 4.8A not populated,An Error message will be returned if data is not provided
+min 1 max 10000 chars -",M if 4.8 = true and 4.8A not populated,An Error message will be returned if data is not provided
 7.1,declaration,True/False,M,If return does not meet declaration criteria then the return is deemed invalid

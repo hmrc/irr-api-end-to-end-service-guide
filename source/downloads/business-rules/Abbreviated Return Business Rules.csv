@@ -1,6 +1,6 @@
 ID,Data Item,Data validation,Mandatory (M)/Optional(O),Business Rules
 1.  Start a return,,,,
-1.1,appointedReportingCompany,True/False,M,"If answer = False, then an error message will be returned advising a reporting company needs to be appointed before being able to continue with the return"
+1.1,appointedReportingCompany,True/False,M,"If answer = False, then an error message will be returned advising that a reporting company needs to be appointed before being able to continue with the return"
 1.2,agentActingOnBehalfOfCompany,True/False,M,An Error message will be returned if data is not provided
 1.3,agentName,"String
 min 1 , max 160",M if 1.2 = true,"Must be completed if item 1.2 - Agent acting on behalf of company is = True
@@ -42,7 +42,7 @@ min 1 , max 160",M,An Error message will be returned if data is not provided
 3.8,"(Ultimate or Deemed Parent)
 countryofIncorporation","2 chars
 Stored as  ISO 3166-1 alpha-2 format",M,"If 'Country of incorporation' is present, then 'CT UTR'cannot be present"
-3.9,legalEntityIdentifier,"20-character, alpha-numeric",O,LEI is an alpha numerical field that contains 18 uppercase letters followed by 2 numbers 
+3.9,legalEntityIdentifier,"20-character, alpha-numeric",O,LEI is an alpha numerical field that contains 18 uppercase letters followed by 2 numbers
 4. Group level information (groupCompanyDetails),,,,
 4.2,numberOfUkCompanies,,,"Derived figure from the number of companies listed in section - List all UK Group companies
 (When the 'List all UK Group companies' has been completed, then the calculated number of entries in the list will be populated in this data item)"
@@ -62,8 +62,7 @@ Back-end date to be stored as : ISO 8601 YYYY-MM-DD
 An Error message will be returned if data is not provided"
 4.6,submissionType,Original/Revised,M,An Error message will be returned if data is not provided
 4.7,revisedReturnDetails,"UTF-String
-min 1 max 5000 chars - 
-",M,"Mandatory when return is revised
+min 1 max 5000 chars -",M,"Mandatory when return is revised
 An Error message will be returned if data is not provided"
 5. Group level elections (groupLevelElections),,,,
 5.1,"(groupRatio)
@@ -107,7 +106,7 @@ An Error message will be returned if data is not provided"
 isElected",True/False,M,"Relevant for both the fixed ratio and the group ratio methods.
  When Interest allowance (consolidated partnerships) election is elected, a Partnership or partnerships to which election relates to must be entered (item 5.14)
 An Error message will be returned if data is not provided
-Item irrevocable "
+Item irrevocable"
 5.11A,"(interestAllowanceConsolidatedPartnership)
 isActive",True/False,M,"Relevant for both fixed ratio or group ratio methods. 
 An Error message will be returned if data is not provided
@@ -115,7 +114,7 @@ An Error message will be returned if data is not provided
 5.12,qicElection,True/False,M,"Qualifying infrastructure company election
 NOTE: Election lasts for 5 years"
 Interest allowance (non-consolidated investment) election,,,,
-5.13,nonConsolidatedInvestments," Investment name type, size min 1, max 5000",M if item 5.10 =True,"MUST specify one or more non-consolidated associates of the worldwide group when Item 5.10 -Interest allowance (non-consolidated investment) election is made.
+5.13,nonConsolidatedInvestments,"Investment name type, size min 1, max 5000",M if item 5.10 =True,"MUST specify one or more non-consolidated associates of the worldwide group when Item 5.10 -Interest allowance (non-consolidated investment) election is made.
 Item irrevocable
 An Error message will be returned if data is not provided"
 Interest allowance (consolidated partnerships) election,,,,
@@ -131,8 +130,7 @@ min 10, max 10
 Use UTR Check Sum to validate the UTR",M,
 6. About the companies involved - data for each UK company (ukCompanies),,,,
 6.1,companyName,"String
-Alpha numeric - min 1 max 160 chars
-",M,An Error message will be returned if data is not provided
+Alpha numeric - min 1 max 160 chars",M,An Error message will be returned if data is not provided
 6.2,utr,"10 digits
 min 10, max 10
 Use UTR Check Sum to validate the UTR",M,An Error message will be returned if data is not provided
