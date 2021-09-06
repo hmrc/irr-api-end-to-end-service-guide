@@ -27,7 +27,6 @@ DEEMED_PARENT_UTR,Enter a UTR where the deemed parent is UK
 EBITDA_DECIMAL,Group EBITDA must be to 2 decimal places or less
 EBITDA_NEGATIVE,"If group EBITDA is negative or zero, set group ratio to 100"
 END_DATE_18_MONTHS,Period of account cannot be longer than 18 months 
-END_DATE_AFTER_GROUP_END_DATE,The end date of the third accounting period must be on or after the end date of the group's period of account
 END_DATE_BEFORE_GROUP_START_DATE,The end date of the first accounting period must be on or after the start date of the group's period of account
 END_DATE_BEFORE_PREVIOUS,End date of this accounting period cannot be equal to or before the end date of the preceding accounting period
 END_DATE_BEFORE_START,End date of the group's period of account must be after start date of the group's period of account

@@ -122,6 +122,7 @@ The ratio % will = 100% if the calculation gives a negative result
 When EBITDA = zero, Group ratio will = 100% 
 When QNGIE = zero, Group ratio will = 0%
 An Error message will be returned if data is not provided
+Where a Group ratio (blended) election is made, the calculation of the group ratio percentage is different. It still cannot be a negative number and is still capped at 100%.
 Examples:
 QNGIE divided by EBITDA gives a negative value, then Group ratio = 100%?
 When EBITDA that is zero, the Group ratio is = 100%??
