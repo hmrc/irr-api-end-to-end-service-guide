@@ -15,3 +15,5 @@ gem 'govuk_tech_docs', '~> 2.1'
 # See: https://github.com/manastech/middleman-search/pull/24
 
 gem 'thin', '~> 1.7.0'
+
+gem "webrick", "~> 1.7"
