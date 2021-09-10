@@ -65,17 +65,19 @@ For in depth information about user restricted endpoints, together with examples
 
 ## Troubleshooting
 
-<ins>What to do when a group company has more than 3 relevant accounting periods</ins>   
+<ins><strong>What to do when a group company has more than 3 relevant accounting periods</strong></ins><br>
 
 You need to follow these steps if: the reporting company is submitting a full Interest Restriction Return (IRR), the group is subject to a restriction for this period of account and one of the group companies has more than 3 relevant accounting periods.   
 
 1. When completing the group company’s details, the reporting company should submit the correct end dates and allocated restrictions (disallowance) for AP1 and AP2.   
+
 2. For AP3, the reporting company should provide the end date of the group company’s last relevant accounting period (whether that would be AP4, AP5 or so on) and the disallowance to AP3 and the remaining APs.   
+
 3. The reporting company should indicate that the details for the group company in question are estimated and the reason why in the text box. The reporting company should explain in the textbox that the group company has more than 3 relevant APs, and provide the end dates and disallowance for AP3 and AP4 (and so on, if needed).   
 
 The reporting company could also include a statement that it does not intend to file a revised return to replace this estimate for completeness.   
 
-<ins>What to do when a group company has more than 3 relevant accounting periods and the AP4 end date is greater than 12 months from the AP2 end date</ins>   
+<ins><strong>What to do when a group company has more than 3 relevant accounting periods and the AP4 end date is greater than 12 months from the AP2 end date</strong></ins><br>   
  
 You need to enter the AP4 end date into the companyEstimateReason field if the AP4 end date is greater than 12 months from the AP2 end date, and the AP3 end date is already populated.   
 
