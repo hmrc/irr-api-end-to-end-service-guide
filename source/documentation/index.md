@@ -83,6 +83,16 @@ You need to enter the AP4 end date into the companyEstimateReason field if the A
 
 The restriction amount for AP4 (if applicable) must be added to the disallowanceAP3 field (combined with AP3 disallowance). The companyEstimateReason field should then detail how the disallowance is split between AP3 and AP4.   
 
+<ins><strong>What to do when the group has deemed parents and you are appointing or revoking a Reporting Company</strong></ins><br>
+
+In the appoint a new Reporting Company for submitting Interest Restriction Returns API and Revoke an existing Reporting Company from submitting Interest Restriction Returns API, you cannot enter deemed parents. Instead, you need to enter the details of one of the relevant entities in the Ultimate Parent field.
+
+In your Interest Restriction Return each year, you can enter the full details of the deemed parent entities and HMRC will accept the appointment or revocation as valid.
+
+<ins><strong>What to do when the group has made the Group Ratio (Blended) election</strong></ins><br>
+
+When you have made the Group Ratio (Blended) Election in your full Interest Restriction return, enter the blended net group-interest expense amount into the QNGIE field and the Group Ratio (Blended) Percentage into the Group Ratio Percentage field. The Group EBITDA field is not required.
+
 ## Changelog
 <!--- Section owner: IRR Programme --->
 
