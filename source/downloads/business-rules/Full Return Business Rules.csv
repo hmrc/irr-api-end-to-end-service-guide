@@ -105,13 +105,15 @@ An Error message will be returned if groupRatio isElected is not provided"
 5.2,qngie,"Numeric
 min 0, no-max",M if 5.1 = Yes,"Qualifying net group-interest expense (QNGIE)
 Only required where groupRatio isElected  = True
-An Error message will be returned if data is not provided and 5.1 = True"
+An Error message will be returned if data is not provided and 5.1 = True
+Where a Group Ratio (Blended) Election is made, this field should be populated with the figure of blended net group-interest expense."
 5.3,groupEBITDA,"Numeric
 no-min, no-max",M if 5.1 = Yes,"Group-EBITDA
 (Earnings Before Interest, Taxes, Depreciation and Amortisation)
-Only required where a groupRatio isElected  = True
-An Error message will be returned if data is not provided and 5.1 = True
-Group-EBITDA can be a negative amount."
+Only required where a groupRatio isElected  = True & groupRatioBlended = False
+An Error message will be returned if data is not provided and 5.1 = True & 5.5 = False
+Group-EBITDA can be a negative amount.
+Note this field is not required when a Group Ratio (Blended) Election is made. "
 5.4,groupRatio,"Numeric %
 min 0%, max 100%
 5 decimal places.
