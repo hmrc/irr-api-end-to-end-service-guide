@@ -1,5 +1,5 @@
 /*
- * Copyright 2021 HM Revenue & Customs
+ * Copyright 2022 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,15 +14,19 @@
  * limitations under the License.
  */
 
-package test
+import org.scalatest.matchers.should.Matchers
+import org.scalatest.wordspec.AnyWordSpec
 
-import org.scalatest.{Matchers, WordSpec}
 import sys.process._
 
-class BuildSpec extends WordSpec with Matchers {
+class BuildSpec extends AnyWordSpec with Matchers {
   "Building the content" should {
     "produce static files" in {
-      val result = "bundle install" #&& Process("bundle exec middleman build --build-dir=public/ --clean", None, "BASE_PATH" -> "/guides/irr-api-end-to-end-service-guide/") !
+      val result = ("bundle install" #&& Process(
+        "bundle exec middleman build --build-dir=public/ --clean",
+        None,
+        "BASE_PATH" -> "/guides/irr-api-end-to-end-service-guide/"
+      )).run().exitValue()
 
       result shouldBe 0
     }

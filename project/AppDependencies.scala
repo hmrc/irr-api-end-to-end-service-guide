@@ -2,13 +2,22 @@ import play.sbt.PlayImport._
 import sbt._
 
 object AppDependencies {
-  val bootStrapPlayVersion = "5.3.0"
+  private lazy val bootStrapPlayVersion = "6.4.0"
+  private lazy val silencerVersion      = "1.7.9"
 
-  val compile: Seq[ModuleID] = Seq(
-    ws,
-    "uk.gov.hmrc" %% "bootstrap-frontend-play-28" % bootStrapPlayVersion)
+  private lazy val silencerDependencies: Seq[ModuleID] = Seq(
+    compilerPlugin("com.github.ghik" % "silencer-plugin" % silencerVersion cross CrossVersion.full),
+    "com.github.ghik" % "silencer-lib" % silencerVersion % Provided cross CrossVersion.full
+  )
 
-  val test: Seq[ModuleID] = Seq(
-    "org.pegdown" % "pegdown" % "1.6.0" % "test",
-    "org.scalatest" %% "scalatest" % "3.0.8" % "test")
+  private lazy val compile: Seq[ModuleID] =
+    Seq(ws, "uk.gov.hmrc" %% "bootstrap-frontend-play-28" % bootStrapPlayVersion)
+
+  private lazy val test: Seq[ModuleID]    = Seq(
+    "com.vladsch.flexmark" % "flexmark-all" % "0.62.2",
+    "org.scalatest"       %% "scalatest"    % "3.2.13"
+  ).map(_ % Test)
+
+  def apply(): Seq[ModuleID]              = compile ++ silencerDependencies ++ test
+
 }
