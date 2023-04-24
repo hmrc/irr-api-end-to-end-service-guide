@@ -1,8 +1,8 @@
-import play.sbt.PlayImport._
-import sbt._
+import play.sbt.PlayImport.*
+import sbt.*
 
 object AppDependencies {
-  private lazy val bootStrapPlayVersion = "7.14.0"
+  private lazy val bootStrapPlayVersion = "7.15.0"
 
   private lazy val compile: Seq[ModuleID] = Seq(
     ws,
@@ -10,7 +10,7 @@ object AppDependencies {
   )
 
   private lazy val test: Seq[ModuleID] = Seq(
-    "com.vladsch.flexmark" % "flexmark-all"           % "0.62.2",
+    "com.vladsch.flexmark" % "flexmark-all"           % "0.64.0",
     "org.scalatest"       %% "scalatest"              % "3.2.15",
     "uk.gov.hmrc"         %% "bootstrap-test-play-28" % bootStrapPlayVersion
   ).map(_ % Test)
