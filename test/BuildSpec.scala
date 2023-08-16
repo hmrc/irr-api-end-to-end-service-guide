@@ -24,8 +24,7 @@ class BuildSpec extends AnyWordSpec with Matchers {
     "produce static files" in {
       val result = ("bundle install" #&& Process(
         "bundle exec middleman build --build-dir=public/ --clean",
-        None,
-        "BASE_PATH" -> "/guides/irr-api-end-to-end-service-guide/"
+        None
       )).run().exitValue()
 
       result shouldBe 0
