@@ -29,3 +29,4 @@ Staticfile.auth
 .idea
 .metals
 /.bsp
+/.batect
