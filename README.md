@@ -1,4 +1,4 @@
-# Technical Documentation - Interest Restriction Return (IRR) Service Guide
+# Technical Documentation - Interest Restriction Return (IRR) Service Guid
 
 ## Overview
 
