@@ -1,4 +1,4 @@
-FROM noonat/rbenv-nodenv
+FROM noonat/rbenv-noden
 
 # Update list of Ruby versions in rbenv
 RUN cd ~/.rbenv/plugins/ruby-build && git pull
