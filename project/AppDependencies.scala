@@ -1,11 +1,9 @@
-import play.sbt.PlayImport.*
 import sbt.*
 
 object AppDependencies {
-  private lazy val bootStrapPlayVersion = "8.4.0"
+  private lazy val bootStrapPlayVersion = "8.5.0"
 
   private lazy val compile: Seq[ModuleID] = Seq(
-    ws,
     "uk.gov.hmrc" %% "bootstrap-frontend-play-30" % bootStrapPlayVersion
   )
 
