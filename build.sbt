@@ -1,4 +1,4 @@
-ThisBuild / scalaVersion := "3.5.0"
+ThisBuild / scalaVersion := "3.5.2"
 ThisBuild / majorVersion := 0
 
 lazy val microservice = Project("irr-api-end-to-end-service-guide", file("."))
