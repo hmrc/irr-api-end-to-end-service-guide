@@ -2,13 +2,13 @@
 
 ## Overview
 
-This repository contains the source files that are used to generate the [Interest Restriction Return (IRR) end-to-end service guide](https://developer.service.hmrc.gov.uk/guides/irr-api-end-to-end-service-guide) on the HMRC Developer Hub.
+This repository contains the source files that are used to generate the [Interest Restriction Return (IRR) end-to-end service guide](hxttps://developer.service.hmrc.gov.uk/guides/irr-api-end-to-end-service-guide) on the HMRC Developer Hub.
 
 ## Editing Service Guide pages
 
 Template files are located in `./source/documentation`. All pages are written in [Markdown](https://en.wikipedia.org/wiki/Markdown).
 
-To add new pages simply copy and paste one of the existing pages, it will automatically appear in the menu.
+To add new pages copy and paste one of the existing pages, it will automatically appear in the menu.
 
 ## Previewing
 
