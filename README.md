@@ -8,7 +8,7 @@ This repository contains the source files that are used to generate the [Interes
 
 Template files are located in `./source/documentation`. All pages are written in [Markdown](https://en.wikipedia.org/wiki/Markdown).
 
-To add new pages copy and paste one of the existing pages, it will automatically appear in the menu.
+To add new pages simply copy and paste one of the existing pages, it will automatically appear in the menu.
 
 ## Previewing
 
