@@ -2,7 +2,7 @@
 
 ## Overview
 
-This repository contains the source files that are used to generate the [Interest Restriction Return (IRR) end-to-end service guide](hxttps://developer.service.hmrc.gov.uk/guides/irr-api-end-to-end-service-guide) on the HMRC Developer Hub.
+This repository contains the source files that are used to generate the [Interest Restriction Return (IRR) end-to-end service guide](https://developer.service.hmrc.gov.uk/guides/irr-api-end-to-end-service-guide) on the HMRC Developer Hub.
 
 ## Editing Service Guide pages
 
