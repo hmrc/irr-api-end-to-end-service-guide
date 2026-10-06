@@ -3,3 +3,4 @@ digital-service: Interest Restriction Returns (IRR)
 description: This repository contains the source files that are used to generate the Interest Restriction Returns End-to-End Service Guide on the HMRC Developer Hub.
 type: Service
 service-type: Frontend
+serviceNowMapping: SNSVC0005657
